@@ -20,6 +20,7 @@ interface FormErrors {
   message?: string
 }
 
+const FORMSPREE_URL = `https://formspree.io/f/${import.meta.env.VITE_FORMSPREE_ID ?? ''}`
 type SubmitStatus = 'idle' | 'sending' | 'sent'
 
 type InputChangeEvent = ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -73,16 +74,43 @@ export default function ContactPage() {
     }
   }
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
+
     const errs = validate(form)
     if (Object.keys(errs).length > 0) {
       setErrors(errs)
       return
     }
+
     setStatus('sending')
-    // Replace with your actual submission logic (e.g. Resend, Formspree, etc.)
-    window.setTimeout(() => setStatus('sent'), 1500)
+
+    try {
+      const res = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          ...(form.company !== '' && { company: form.company }),
+                             ...(form.market !== '' && { market: form.market }),
+                             message: form.message,
+        }),
+      })
+
+      if (res.ok) {
+        setStatus('sent')
+      } else {
+        if (import.meta.env.DEV) {
+          const body = await res.json().catch(() => null)
+          console.error('[Formspree] Submission failed:', res.status, body)
+        }
+        setStatus('error')
+      }
+    } catch (err) {
+      if (import.meta.env.DEV) console.error('[Formspree] Network error:', err)
+        setStatus('error')
+    }
   }
 
   return (
@@ -207,6 +235,24 @@ export default function ContactPage() {
                   >
                     Send a Message
                   </h3>
+
+                  {status === 'error' && (
+                    <div
+                    role="alert"
+                    style={{
+                      marginBottom: '1.5rem',
+                      padding: '0.875rem 1rem',
+                      background: '#fff0f0',
+                      border: '1.5px solid var(--red)',
+                                          color: 'var(--red)',
+                                          fontSize: '0.875rem',
+                                          lineHeight: 1.5,
+                    }}
+                    >
+                    <strong>Submission failed.</strong> Please check your connection and try
+                    again, or email us directly if the problem persists.
+                    </div>
+                  )}
 
                   <div className="form-row">
                     <div className="form-group">
