@@ -21,7 +21,7 @@ interface FormErrors {
 }
 
 const FORMSPREE_URL = `https://formspree.io/f/${import.meta.env.VITE_FORMSPREE_ID ?? ''}`
-type SubmitStatus = 'idle' | 'sending' | 'sent'
+type SubmitStatus = 'idle' | 'sending' | 'sent' | 'error'
 
 type InputChangeEvent = ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
 

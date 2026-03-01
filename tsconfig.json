@@ -12,13 +12,17 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "strict": true,
+    "types": ["vite/client"],
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "sanity"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src"],
+  "references": [
+    { "path": "./tsconfig.node.json" },
+    { "path": "./sanity/tsconfig.json" }
+  ]
 }
 
