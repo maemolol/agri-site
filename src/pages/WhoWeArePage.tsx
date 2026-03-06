@@ -30,14 +30,7 @@ export default function WhoWeArePage() {
 
       <section className="section white">
         <div className="inner">
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: '2px',
-              background: 'var(--grey-200)',
-            }}
-          >
+          <div className="team-grid">
             {(team ?? []).map((member: TeamMember) => (
               <Link
                 key={member.slug}
@@ -48,7 +41,9 @@ export default function WhoWeArePage() {
                   borderTop: '3px solid transparent',
                   textDecoration: 'none',
                   transition: 'border-color 0.2s, background 0.2s',
-                  display: 'block',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'flex-start',
                 }}
                 onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
                   const el = e.currentTarget
@@ -65,85 +60,61 @@ export default function WhoWeArePage() {
                   <img
                     src={urlFor(member.photo).width(300).height(300).fit('crop').url()}
                     alt={member.photo.alt ?? member.name}
-                    style={{ width: 72, height: 72, objectFit: 'cover', marginBottom: '1.25rem' }}
+                    style={{ width: 72, height: 72, objectFit: 'cover' }}
                   />
                 ) : (
-                  <div
-                    style={{
-                      width: 72,
-                      height: 72,
-                      background: 'var(--navy)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontFamily: 'var(--font-head)',
-                      fontSize: '1.6rem',
-                      fontWeight: 700,
-                      color: 'rgba(255,255,255,0.5)',
-                      marginBottom: '1.25rem',
-                    }}
-                  >
+                  <div style={{
+                    width: 72, height: 72,
+                    background: 'var(--navy)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontFamily: 'var(--font-head)', fontSize: '1.6rem',
+                    fontWeight: 700, color: 'rgba(255,255,255,0.5)',
+                  }}>
                   {getInitials(member.name)}
                   </div>
                 )}
 
-                {member.isCoFounder === true && (
-                  <span
-                    style={{
+                <div style={{ marginTop: '0.75rem', marginBottom: '0.5rem', minHeight: '1.4rem' }}>
+                  {member.isCoFounder === true && (
+                    <span style={{
                       display: 'inline-block',
-                      background: 'var(--red)',
-                      color: 'white',
-                      fontSize: '0.62rem',
-                      fontWeight: 700,
-                      letterSpacing: '0.1em',
-                      textTransform: 'uppercase',
+                      background: 'var(--red)', color: 'white',
+                      fontSize: '0.62rem', fontWeight: 700,
+                      letterSpacing: '0.1em', textTransform: 'uppercase',
                       padding: '0.2rem 0.5rem',
-                      marginBottom: '0.5rem',
-                    }}
-                  >
-                    Co-Founder
-                  </span>
-                )}
+                    }}>
+                      Co-Founder
+                    </span>
+                  )}
+                </div>
 
-                <h3
-                  style={{
-                    fontFamily: 'var(--font-head)',
-                    fontSize: '1.35rem',
-                    fontWeight: 600,
-                    color: 'var(--navy)',
-                    marginBottom: '0.25rem',
-                  }}
-                >
+                <h3 style={{
+                  fontFamily: 'var(--font-head)', fontSize: '1.35rem',
+                  fontWeight: 600, color: 'var(--navy)', marginBottom: '0.25rem',
+                }}>
                   {member.name}
                 </h3>
-                <div
-                  style={{
-                    fontSize: '0.78rem',
-                    fontWeight: 700,
-                    color: 'var(--teal)',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.08em',
-                    marginBottom: '0.85rem',
-                  }}
-                >
+
+                <div style={{
+                  fontSize: '0.78rem', fontWeight: 700, color: 'var(--teal)',
+                  textTransform: 'uppercase', letterSpacing: '0.08em',
+                  marginBottom: '0.85rem',
+                }}>
                   {member.role}
                 </div>
+
                 {member.quote != null && (
-                  <blockquote
-                    style={{
-                      fontSize: '0.875rem',
-                      color: 'var(--grey-500)',
-                      lineHeight: 1.65,
-                      fontStyle: 'italic',
-                      borderLeft: '2px solid var(--grey-200)',
-                      paddingLeft: '0.85rem',
-                      marginBottom: '1.1rem',
-                    }}
-                  >
+                  <blockquote style={{
+                    fontSize: '0.875rem', color: 'var(--grey-500)',
+                    lineHeight: 1.65, fontStyle: 'italic',
+                    borderLeft: '2px solid var(--grey-200)',
+                    paddingLeft: '0.85rem', marginBottom: '1.1rem',
+                  }}>
                     &ldquo;{member.quote}&rdquo;
                   </blockquote>
                 )}
-                <span className="btn-ghost" style={{ pointerEvents: 'none' }}>
+
+                <span className="btn-ghost" style={{ pointerEvents: 'none', marginTop: 'auto' }}>
                   Full profile <span className="arrow">→</span>
                 </span>
               </Link>

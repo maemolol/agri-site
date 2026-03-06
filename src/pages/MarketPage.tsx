@@ -46,9 +46,7 @@ export default function MarketPage() {
 
       <section className="section white">
         <div className="inner">
-          <div
-            style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', marginTop: '1rem' }}
-          >
+          <div className="market-cols">
             {/* Challenges */}
             <div>
               <h2

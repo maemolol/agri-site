@@ -73,7 +73,7 @@ export default function WhatWeArePage() {
         <div className="inner">
           <span className="label-tag">Operating Principles</span>
           <h2 className="section-heading">How we approach agronomy</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2px', background: 'var(--grey-200)', marginTop: '3rem' }}>
+          <div className="pillars-grid">
             {pillars.map(p => (
               <div key={p.title} style={{ background: 'var(--white)', padding: '2.25rem 2rem', borderTop: '3px solid var(--teal)' }}>
                 <h3 style={{ fontFamily: 'var(--font-head)', fontSize: '1.2rem', fontWeight: 600, color: 'var(--navy)', marginBottom: '0.65rem' }}>{p.title}</h3>
@@ -81,7 +81,6 @@ export default function WhatWeArePage() {
               </div>
             ))}
           </div>
-          <style>{`@media(max-width:768px){.pillars-grid{grid-template-columns:1fr!important}}`}</style>
         </div>
       </section>
 

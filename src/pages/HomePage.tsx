@@ -12,6 +12,12 @@ const FALLBACK_STATS = [
   { number: '12', unit: '+', label: 'Beneficial microbial species' },
 ]
 
+const PRODUCTS = [
+  { icon: '🧫', title: 'Soil Biology',       body: '12+ beneficial species in a stabilization matrix that maintains viability from production through field application — eliminating the viability gap that undermines competing products.' },
+  { icon: '🌿', title: 'Nutrient Efficiency', body: 'N-fixing bacteria and mycorrhizal networks reduce synthetic fertilizer requirements by 40–60% while improving plant uptake efficiency across all macronutrients.' },
+  { icon: '🛡️', title: 'Plant Resilience',   body: 'Immune-priming biology and trichoderma reduce susceptibility to soil-borne disease, abiotic stress, and performance losses tied to extreme weather events.' },
+]
+
 export default function HomePage() {
   const { data, loading, error } = useSanity<HomepageData>(HOMEPAGE_QUERY)
 
@@ -53,13 +59,13 @@ export default function HomePage() {
             Complete Soil & Plant Health Inoculant
           </span>
           <h1 style={{
-            fontFamily: 'var(--font-head)', fontSize: 'clamp(2.4rem, 5vw, 4rem)',
+            fontFamily: 'var(--font-head)', fontSize: 'clamp(2rem, 5vw, 4rem)',
             fontWeight: 600, lineHeight: 1.1, color: 'white',
             maxWidth: '600px', marginBottom: '1.25rem',
           }}>
             {data?.settings?.heroHeadline ?? 'Cutting-edge soil biology for measurable crop returns'}
           </h1>
-          <p style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.75)', maxWidth: '520px', lineHeight: 1.7, marginBottom: '2.25rem' }}>
+          <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.75)', maxWidth: '520px', lineHeight: 1.7, marginBottom: '2.25rem' }}>
             {data?.settings?.heroSubheadline ?? 'Our commitment to science drives us to deliver a biologically complete inoculant that rebuilds soil microbial communities, improves nutrient uptake, and reduces synthetic input dependency — season after season.'}
           </p>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
@@ -71,18 +77,13 @@ export default function HomePage() {
 
       {/* ── STATS BAR ────────────────────────────────────────────────────── */}
       <div style={{ background: 'var(--navy)' }}>
-        <div style={{
-          maxWidth: 'var(--max-w)', margin: '0 auto',
-          padding: '0 var(--pad-x)',
-          display: 'grid', gridTemplateColumns: `repeat(${stats.length}, 1fr)`,
-          borderLeft: '1px solid rgba(255,255,255,0.08)',
-        }}>
+        <div className="stats-bar inner" style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '0 var(--pad-x)' }}>
           {stats.map(s => (
-            <div key={s.label} style={{ padding: '2rem 1.5rem', borderRight: '1px solid rgba(255,255,255,0.08)' }}>
-              <div style={{ fontFamily: 'var(--font-head)', fontSize: '2.6rem', fontWeight: 700, color: 'white', lineHeight: 1, marginBottom: '0.35rem' }}>
-                {s.number}<span style={{ color: 'var(--red)' }}>{s.unit}</span>
+            <div key={s.label} className="stats-bar-cell">
+              <div className="stats-bar-number">
+                {s.number}<span className="stats-bar-unit">{s.unit}</span>
               </div>
-              <div style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.55)', lineHeight: 1.4 }}>{s.label}</div>
+              <div className="stats-bar-label">{s.label}</div>
             </div>
           ))}
         </div>
@@ -96,19 +97,12 @@ export default function HomePage() {
         </div>
       </section>
       <div style={{ maxWidth: 'var(--max-w)', margin: '2rem auto 0', padding: '0 var(--pad-x)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5px', background: 'var(--grey-200)' }}>
-          {[
-            { icon: '🧫', title: 'Soil Biology', body: '12+ beneficial species in a stabilization matrix that maintains viability from production through field application — eliminating the viability gap that undermines competing products.' },
-            { icon: '🌿', title: 'Nutrient Efficiency', body: 'N-fixing bacteria and mycorrhizal networks reduce synthetic fertilizer requirements by 40–60% while improving plant uptake efficiency across all macronutrients.' },
-            { icon: '🛡️', title: 'Plant Resilience', body: 'Immune-priming biology and trichoderma reduce susceptibility to soil-borne disease, abiotic stress, and performance losses tied to extreme weather events.' },
-          ].map(c => (
-            <div key={c.title} style={{ background: 'var(--white)', padding: '2.25rem 2rem', cursor: 'pointer', transition: 'background 0.2s' }}
-              onMouseEnter={e => (e.currentTarget.style.background = 'var(--grey-50)')}
-              onMouseLeave={e => (e.currentTarget.style.background = 'var(--white)')}
-            >
-              <div style={{ width: 48, height: 48, marginBottom: '1.25rem', background: 'var(--teal-light)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem' }}>{c.icon}</div>
-              <h3 style={{ fontFamily: 'var(--font-head)', fontSize: '1.35rem', fontWeight: 600, color: 'var(--navy)', marginBottom: '0.75rem' }}>{c.title}</h3>
-              <p style={{ fontSize: '0.875rem', color: 'var(--grey-700)', lineHeight: 1.65, marginBottom: '1.25rem' }}>{c.body}</p>
+        <div className="product-grid">
+          {PRODUCTS.map(c => (
+            <div key={c.title} className="product-card">
+              <div className="product-card-icon">{c.icon}</div>
+              <h3>{c.title}</h3>
+              <p>{c.body}</p>
               <Link to="/what-we-are" className="btn-ghost">Learn more <span className="arrow">→</span></Link>
             </div>
           ))}
@@ -186,22 +180,15 @@ export default function HomePage() {
 
       {/* ── MARKETS STRIP ────────────────────────────────────────────────── */}
       {markets.length > 0 && (
-        <div style={{ display: 'grid', gridTemplateColumns: `repeat(${markets.length}, 1fr)`, borderTop: '4px solid var(--red)' }}>
+        <div className="markets-strip" style={{ gridTemplateColumns: `repeat(${markets.length}, 1fr)` }}>
           {markets.map(m => (
-            <Link key={m.slug} to={`/markets/${m.slug}`}
-              style={{
-                padding: '2.75rem 2.25rem', background: 'var(--navy)',
-                borderRight: '1px solid rgba(255,255,255,0.08)',
-                textDecoration: 'none', position: 'relative', overflow: 'hidden',
-                display: 'block', transition: 'background 0.2s',
-              }}
-              onMouseEnter={e => (e.currentTarget.style.background = 'var(--navy-light)')}
-              onMouseLeave={e => (e.currentTarget.style.background = 'var(--navy)')}
-            >
-              <div style={{ fontFamily: 'var(--font-head)', fontSize: '3rem', fontWeight: 700, color: 'rgba(255,255,255,0.08)', lineHeight: 1, marginBottom: '-0.75rem' }}>{m.displayNumber}</div>
-              <h3 style={{ fontFamily: 'var(--font-head)', fontSize: '1.5rem', fontWeight: 600, color: 'white', marginBottom: '0.75rem' }}>{m.name}</h3>
-              <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, marginBottom: '1.5rem' }}>{m.overview.slice(0, 120)}…</p>
-              <span className="btn-ghost" style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.82rem' }}>Explore market <span className="arrow">→</span></span>
+            <Link key={m.slug} to={`/markets/${m.slug}`} className="markets-strip-cell">
+              <div className="markets-strip-num">{m.displayNumber}</div>
+              <h3>{m.name}</h3>
+              <p>{m.overview.slice(0, 120)}…</p>
+              <span className="btn-ghost" style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.82rem' }}>
+                Explore market <span className="arrow">→</span>
+              </span>
             </Link>
           ))}
         </div>

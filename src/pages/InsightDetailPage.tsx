@@ -54,14 +54,7 @@ export default function InsightDetailPage() {
             ← Back to Insights
           </Link>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 280px',
-              gap: '4rem',
-              alignItems: 'start',
-            }}
-          >
+          <div className="detail-layout detail-layout--insight">
             {/* Article body */}
             <div>
               <p

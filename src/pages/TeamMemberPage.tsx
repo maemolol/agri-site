@@ -50,14 +50,7 @@ export default function TeamMemberPage() {
             ← Back to Team
           </Link>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '280px 1fr',
-              gap: '5rem',
-              alignItems: 'start',
-            }}
-          >
+          <div className="detail-layout detail-layout--team">
             {/* Avatar column */}
             <div>
               {member.photo?.url != null ? (

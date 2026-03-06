@@ -123,14 +123,7 @@ export default function ContactPage() {
 
       <section className="section grey">
         <div className="inner">
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '2fr 3fr',
-              gap: '5rem',
-              alignItems: 'start',
-            }}
-          >
+          <div className="contact-layout">
             {/* ── Sidebar ───────────────────────────────────────────────── */}
             <div>
               <h2
@@ -238,19 +231,19 @@ export default function ContactPage() {
 
                   {status === 'error' && (
                     <div
-                    role="alert"
-                    style={{
-                      marginBottom: '1.5rem',
-                      padding: '0.875rem 1rem',
-                      background: '#fff0f0',
-                      border: '1.5px solid var(--red)',
-                                          color: 'var(--red)',
-                                          fontSize: '0.875rem',
-                                          lineHeight: 1.5,
-                    }}
+                      role="alert"
+                      style={{
+                        marginBottom: '1.5rem',
+                        padding: '0.875rem 1rem',
+                        background: '#fff0f0',
+                        border: '1.5px solid var(--red)',
+                        color: 'var(--red)',
+                        fontSize: '0.875rem',
+                        lineHeight: 1.5,
+                      }}
                     >
-                    <strong>Submission failed.</strong> Please check your connection and try
-                    again, or email us directly if the problem persists.
+                      <strong>Submission failed.</strong> Please check your connection and try
+                      again, or email us directly if the problem persists.
                     </div>
                   )}
 

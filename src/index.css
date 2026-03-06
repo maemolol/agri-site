@@ -362,3 +362,86 @@ button { font-family: var(--font-body); cursor: pointer; border: none; backgroun
 .portable-text h3     { font-family: var(--font-head); font-size: 1.2rem; font-weight: 600; color: var(--navy); margin: 1.25rem 0 0.5rem; }
 .portable-text ul     { padding-left: 1.5rem; margin-bottom: 1rem; color: var(--grey-700); font-size: 0.975rem; }
 .portable-text li     { margin-bottom: 0.4rem; }
+
+/* ── Mobile fixes ────────────────────────────────────────────────────────── */
+
+/* Stats bar: 2×2 on tablet, single column on phone */
+.stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); border-left: 1px solid rgba(255,255,255,0.08); }
+.stats-bar-cell { padding: 2rem 1.5rem; border-right: 1px solid rgba(255,255,255,0.08); }
+.stats-bar-number { font-family: var(--font-head); font-size: 2.6rem; font-weight: 700; color: white; line-height: 1; margin-bottom: 0.35rem; }
+.stats-bar-unit { color: var(--red); }
+.stats-bar-label { font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.4; }
+
+@media (max-width: 700px) {
+  .stats-bar { grid-template-columns: 1fr 1fr; }
+  .stats-bar-number { font-size: 2rem; }
+}
+@media (max-width: 400px) {
+  .stats-bar { grid-template-columns: 1fr; }
+}
+
+/* Product cards: single column on mobile */
+.product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--grey-200); }
+.product-card { background: var(--white); padding: 2.25rem 2rem; transition: background 0.2s; }
+.product-card:hover { background: var(--grey-50); }
+.product-card-icon { width: 48px; height: 48px; margin-bottom: 1.25rem; background: var(--teal-light); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+.product-card h3 { font-family: var(--font-head); font-size: 1.35rem; font-weight: 600; color: var(--navy); margin-bottom: 0.75rem; }
+.product-card p { font-size: 0.875rem; color: var(--grey-700); line-height: 1.65; margin-bottom: 1.25rem; }
+
+@media (max-width: 768px) { .product-grid { grid-template-columns: 1fr; } }
+
+/* Markets strip: single column on mobile */
+.markets-strip { display: grid; border-top: 4px solid var(--red); }
+.markets-strip-cell {
+  padding: 2.75rem 2.25rem; background: var(--navy);
+  border-right: 1px solid rgba(255,255,255,0.08);
+  text-decoration: none; display: block; transition: background 0.2s;
+}
+.markets-strip-cell:hover { background: var(--navy-light); }
+.markets-strip-num { font-family: var(--font-head); font-size: 3rem; font-weight: 700; color: rgba(255,255,255,0.08); line-height: 1; margin-bottom: -0.75rem; }
+.markets-strip-cell h3 { font-family: var(--font-head); font-size: 1.5rem; font-weight: 600; color: white; margin-bottom: 0.75rem; }
+.markets-strip-cell p { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 1.5rem; }
+
+@media (max-width: 768px) {
+  .markets-strip { grid-template-columns: 1fr !important; }
+  .markets-strip-cell { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+}
+
+/* Contact page layout: single column on mobile */
+.contact-layout { display: grid; grid-template-columns: 2fr 3fr; gap: 5rem; align-items: start; }
+
+@media (max-width: 768px) {
+  .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+
+/* Market page challenges/solutions: single column on mobile */
+.market-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 1rem; }
+
+@media (max-width: 640px) {
+  .market-cols { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+/* Team grid: single column on mobile */
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--grey-200); }
+
+@media (max-width: 768px) { .team-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .team-grid { grid-template-columns: 1fr; } }
+
+/* Team/insight detail: single column on mobile */
+.detail-layout { display: grid; gap: 5rem; align-items: start; }
+.detail-layout--team    { grid-template-columns: 280px 1fr; }
+.detail-layout--insight { grid-template-columns: 1fr 280px; }
+
+@media (max-width: 768px) {
+  .detail-layout--team,
+  .detail-layout--insight { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+/* WhatWeAre pillars: single column on mobile */
+.pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--grey-200); margin-top: 3rem; }
+
+@media (max-width: 768px) { .pillars-grid { grid-template-columns: 1fr; } }
+
+/* Ensure nothing overflows the viewport horizontally */
+body { overflow-x: hidden; }
+.inner, .section { overflow-x: hidden; }
