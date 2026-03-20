@@ -5,13 +5,13 @@ import { schemaTypes } from './schemas';
 const projectId = import.meta.env.VITE_SANITY_PROJECT_ID;
 const dataset = import.meta.env.VITE_SANITY_DATASET ?? 'production';
 if (!projectId && import.meta.env.DEV) {
-    console.warn('[BioGrow Studio] VITE_SANITY_PROJECT_ID is not set.\n' +
+    console.warn('[Smart Blend Studio] VITE_SANITY_PROJECT_ID is not set.\n' +
         'Copy .env.example to .env.local and add your project ID.');
 }
 const SINGLETON_TYPES = new Set(['siteSettings', 'comparisonTable', 'whatWeArePage']);
 export default defineConfig({
-    name: 'biogrow',
-    title: 'BioGrow CMS',
+    name: 'smartblend',
+    title: 'Smart Blend CMS',
     projectId: projectId ?? 'MISSING_PROJECT_ID',
     dataset,
     // ── CRITICAL ──────────────────────────────────────────────────────────────

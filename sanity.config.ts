@@ -1,14 +1,14 @@
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
-import { schemaTypes } from './schemas'
+import { schemaTypes } from './sanity/schemas'
 
-const projectId = import.meta.env.VITE_SANITY_PROJECT_ID as string | undefined
-const dataset = (import.meta.env.VITE_SANITY_DATASET as string | undefined) ?? 'production'
+const projectId = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_SANITY_PROJECT_ID) || process.env.VITE_SANITY_PROJECT_ID
+const dataset = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_SANITY_DATASET) || process.env.VITE_SANITY_DATASET || 'production'
 
 if (!projectId && import.meta.env.DEV) {
   console.warn(
-    '[BioGrow Studio] VITE_SANITY_PROJECT_ID is not set.\n' +
+    '[Smart Blend Studio] VITE_SANITY_PROJECT_ID is not set.\n' +
     'Copy .env.example to .env.local and add your project ID.',
   )
 }
@@ -16,10 +16,10 @@ if (!projectId && import.meta.env.DEV) {
 const SINGLETON_TYPES = new Set(['siteSettings', 'comparisonTable', 'whatWeArePage'])
 
 export default defineConfig({
-  name: 'biogrow',
-  title: 'BioGrow CMS',
+  name: 'smartblend',
+  title: 'Smart Blend CMS',
 
-  projectId: projectId ?? 'MISSING_PROJECT_ID',
+  projectId: "f1lku4u2",
   dataset,
 
   // ── CRITICAL ──────────────────────────────────────────────────────────────
