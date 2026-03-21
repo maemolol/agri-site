@@ -1,4 +1,4 @@
-// GROQ query strings for BioGrow Sanity CMS
+// GROQ query strings for Smart Blend Sanity CMS
 // The `groq` tagged-template literal is just a passthrough for syntax highlighting.
 // We define it inline to avoid the separate `groq` npm package dependency.
 const groq = (strings: TemplateStringsArray, ...values: unknown[]): string =>

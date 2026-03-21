@@ -16,7 +16,7 @@ export default function InsightsPage() {
       <PageHero
         label="Knowledge Base"
         headline="Agronomy Insights"
-        subheadline="Field data, research summaries, and agronomic perspectives from the BioGrow team."
+        subheadline="Field data, research summaries, and agronomic perspectives from the Smart Blend team."
       />
 
       <section className="section white">

@@ -70,7 +70,7 @@ export default function WhoWeArePage() {
                     fontFamily: 'var(--font-head)', fontSize: '1.6rem',
                     fontWeight: 700, color: 'rgba(255,255,255,0.5)',
                   }}>
-                  {getInitials(member.name)}
+                    {getInitials(member.name)}
                   </div>
                 )}
 

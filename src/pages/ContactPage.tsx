@@ -93,8 +93,8 @@ export default function ContactPage() {
           name: form.name,
           email: form.email,
           ...(form.company !== '' && { company: form.company }),
-                             ...(form.market !== '' && { market: form.market }),
-                             message: form.message,
+          ...(form.market !== '' && { market: form.market }),
+          message: form.message,
         }),
       })
 
@@ -109,7 +109,7 @@ export default function ContactPage() {
       }
     } catch (err) {
       if (import.meta.env.DEV) console.error('[Formspree] Network error:', err)
-        setStatus('error')
+      setStatus('error')
     }
   }
 
@@ -138,7 +138,7 @@ export default function ContactPage() {
                 How Can We Help?
               </h2>
               <p className="body-copy" style={{ marginBottom: '1.5rem' }}>
-                Whether you&rsquo;re evaluating BioGrow for the first time or designing a
+                Whether you&rsquo;re evaluating Smart Blend for the first time or designing a
                 multi-field trial program, our agronomists are ready to support you.
               </p>
 
