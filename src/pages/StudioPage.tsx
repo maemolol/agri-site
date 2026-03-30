@@ -24,7 +24,7 @@
  *    own router instead of matching them as 404s.
  */
 import { Studio } from 'sanity'
-import studioConfig from '../../sanity/sanity.config'
+import studioConfig from '../../sanity.config'
 
 export default function StudioPage() {
   return (
