@@ -7,14 +7,15 @@ import { SITE_SETTINGS_QUERY } from '@/lib/queries'
 import type { SiteSettings } from '@/types'
 
 // ── Lazy pages (each route is its own chunk) ──────────────────────────────────
-const HomePage          = lazy(() => import('@/pages/HomePage'))
-const WhatWeArePage     = lazy(() => import('@/pages/WhatWeArePage'))
-const WhoWeArePage      = lazy(() => import('@/pages/WhoWeArePage'))
-const TeamMemberPage    = lazy(() => import('@/pages/TeamMemberPage'))
-const MarketPage        = lazy(() => import('@/pages/MarketPage'))
-const InsightsPage      = lazy(() => import('@/pages/InsightsPage'))
+const HomePage = lazy(() => import('@/pages/HomePage'))
+const WhatWeArePage = lazy(() => import('@/pages/WhatWeArePage'))
+const WhoWeArePage = lazy(() => import('@/pages/WhoWeArePage'))
+const TeamMemberPage = lazy(() => import('@/pages/TeamMemberPage'))
+const MarketPage = lazy(() => import('@/pages/MarketPage'))
+const InsightsPage = lazy(() => import('@/pages/InsightsPage'))
 const InsightDetailPage = lazy(() => import('@/pages/InsightDetailPage'))
-const ContactPage       = lazy(() => import('@/pages/ContactPage'))
+const EventsPage = lazy(() => import('@/pages/EventsPage'))
+const ContactPage = lazy(() => import('@/pages/ContactPage'))
 
 // Studio is a ~2MB chunk — only loads when the user visits /studio
 const StudioPage = lazy(() => import('@/pages/StudioPage'))
@@ -72,6 +73,7 @@ const router = createBrowserRouter([
       { path: 'insights',       element: <InsightsPage /> },
       { path: 'insights/:slug', element: <InsightDetailPage /> },
       { path: 'contact',        element: <ContactPage /> },
+      { path: 'events',         element: <EventsPage /> },
       { path: '*',              element: <NotFoundPage /> },
     ],
   },

@@ -445,3 +445,36 @@ button { font-family: var(--font-body); cursor: pointer; border: none; backgroun
 /* Ensure nothing overflows the viewport horizontally */
 body { overflow-x: hidden; }
 .inner, .section { overflow-x: hidden; }
+
+/* ── Secondary nav bar ───────────────────────────────────────────────────── */
+.secondary-nav-bar {
+  background: var(--grey-50);
+  border-bottom: 1px solid var(--grey-200);
+}
+.secondary-nav-inner {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 0 var(--pad-x);
+  display: flex; align-items: center; gap: 0.25rem;
+  justify-content: flex-end;
+}
+.secondary-nav-item {
+  font-size: 0.78rem; font-weight: 600; color: var(--grey-500);
+  padding: 0.45rem 0.85rem; text-decoration: none;
+  transition: color var(--ease), background var(--ease);
+  border-bottom: 2px solid transparent;
+}
+.secondary-nav-item:hover { color: var(--navy); }
+.secondary-nav-item--active { color: var(--teal); border-bottom-color: var(--teal); }
+
+/* Hide secondary nav bar on mobile — items appear in the mobile drawer instead */
+@media (max-width: 860px) { .secondary-nav-bar { display: none; } }
+
+/* Mobile nav divider between primary and secondary items */
+.mobile-nav-divider {
+  height: 1px; background: var(--grey-200);
+  margin: 0.25rem 0;
+}
+.mobile-nav-item--secondary {
+  font-size: 0.82rem; color: var(--grey-500);
+  padding-top: 0.65rem; padding-bottom: 0.65rem;
+}

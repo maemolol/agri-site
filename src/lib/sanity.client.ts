@@ -7,7 +7,7 @@ export const client = createClient({
   apiVersion: import.meta.env.VITE_SANITY_API_VERSION ?? '2024-01-01',
   useCdn: true,
   // Uncomment and set VITE_SANITY_TOKEN for draft preview support
-  // token: import.meta.env.VITE_SANITY_TOKEN,
+  token: import.meta.env.VITE_SANITY_TOKEN,
 })
 
 const builder = imageUrlBuilder(client)

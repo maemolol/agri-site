@@ -1,13 +1,35 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 
+// ── TopBar ────────────────────────────────────────────────────────────────────
+export function TopBar() {
+  const links = [
+    { label: 'Safety Data Sheets', href: '#' },
+    { label: 'Careers', href: '#' },
+  ]
+  return (
+    <div className="topbar">
+      {links.map((l) => (
+        <a key={l.label} href={l.href} className="topbar-link">{l.label}</a>
+      ))}
+    </div>
+  )
+}
+
 // ── SiteNav ───────────────────────────────────────────────────────────────────
-const NAV_ITEMS = [
-  { label: 'Product', to: '/what-we-are' },
-  { label: 'Markets', to: '/markets/row-crops' },
-  { label: 'Who We Are', to: '/who-we-are' },
+// Primary nav — shown in the main navigation bar
+const PRIMARY_NAV = [
+  { label: 'Home',        to: '/' },
+  { label: 'Who We Are',  to: '/who-we-are' },
+  { label: 'Events',      to: '/events' },
+  { label: 'Contact Us',  to: '/contact' },
+]
+
+// Secondary nav — shown as smaller links in the topbar, full links in footer
+const SECONDARY_NAV = [
+  { label: 'Lapazma',  to: '/what-we-are' },
+  { label: 'Markets',  to: '/markets/row-crops' },
   { label: 'Insights', to: '/insights' },
-  { label: 'Contact', to: '/contact' },
 ]
 
 export function SiteNav() {
@@ -15,6 +37,22 @@ export function SiteNav() {
 
   return (
     <>
+      {/* Secondary nav bar — sits above main nav on desktop */}
+      <div className="secondary-nav-bar">
+        <div className="secondary-nav-inner">
+          {SECONDARY_NAV.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              className={({ isActive }) =>
+                isActive ? 'secondary-nav-item secondary-nav-item--active' : 'secondary-nav-item'
+              }
+            >
+              {item.label}
+            </NavLink>
+          ))}
+        </div>
+      </div>
       <nav className="site-nav">
         <div className="nav-inner">
           {/* Logo */}
@@ -22,12 +60,13 @@ export function SiteNav() {
             <img src="/logo.png" alt="Smart Blend Technology" />
           </Link>
 
-          {/* Desktop links */}
+          {/* Desktop primary links */}
           <ul className="nav-links">
-            {NAV_ITEMS.map((item) => (
+            {PRIMARY_NAV.map((item) => (
               <li key={item.to}>
                 <NavLink
                   to={item.to}
+                  end={item.to === '/'}
                   className={({ isActive }) =>
                     isActive ? 'nav-item nav-item--active' : 'nav-item'
                   }
@@ -40,9 +79,7 @@ export function SiteNav() {
 
           {/* Desktop CTA */}
           <div className="nav-right">
-            <Link to="/contact" className="nav-cta">
-              Request a Trial
-            </Link>
+            <Link to="/events" className="nav-cta">Register for Field Day</Link>
           </div>
 
           {/* Mobile hamburger */}
@@ -60,12 +97,25 @@ export function SiteNav() {
       {/* Mobile drawer */}
       {open && (
         <div className="mobile-nav">
-          {NAV_ITEMS.map((item) => (
+          {PRIMARY_NAV.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
               className={({ isActive }) =>
                 isActive ? 'mobile-nav-item mobile-nav-item--active' : 'mobile-nav-item'
+              }
+              onClick={() => setOpen(false)}
+            >
+              {item.label}
+            </NavLink>
+          ))}
+          <div className="mobile-nav-divider" />
+          {SECONDARY_NAV.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              className={({ isActive }) =>
+                isActive ? 'mobile-nav-item mobile-nav-item--secondary mobile-nav-item--active' : 'mobile-nav-item mobile-nav-item--secondary'
               }
               onClick={() => setOpen(false)}
             >
@@ -81,27 +131,25 @@ export function SiteNav() {
 // ── Footer ────────────────────────────────────────────────────────────────────
 const FOOTER_COLS = [
   {
-    heading: 'Products',
+    heading: 'Company',
     links: [
-      { label: 'Complete Inoculant', to: '/what-we-are' },
-      { label: 'Science & Formulation', to: '/what-we-are' },
+      { label: 'Who We Are',  to: '/who-we-are' },
+      { label: 'Events',      to: '/events' },
+      { label: 'Contact Us',  to: '/contact' },
+    ],
+  },
+  {
+    heading: 'Product',
+    links: [
+      { label: 'Lapazma',           to: '/what-we-are' },
       { label: 'Safety Data Sheets', to: '/contact' },
     ],
   },
   {
-    heading: 'Markets',
+    heading: 'Explore',
     links: [
-      { label: 'Row Crops', to: '/markets/row-crops' },
-      { label: 'Specialty Crops', to: '/markets/specialty-crops' },
-      { label: 'Turf & Ornamentals', to: '/markets/turf-ornamentals' },
-    ],
-  },
-  {
-    heading: 'Company',
-    links: [
-      { label: 'Who We Are', to: '/who-we-are' },
-      { label: 'Agronomy Insights', to: '/insights' },
-      { label: 'Contact Us', to: '/contact' },
+      { label: 'Markets',  to: '/markets/row-crops' },
+      { label: 'Insights', to: '/insights' },
     ],
   },
 ]
@@ -119,8 +167,7 @@ export function SiteFooter({ tagline }: SiteFooterProps) {
             <img src="/logo.png" alt="Smart Blend Technology"/>
           </div>
           <p className="footer-desc">
-            {tagline ??
-              'Science-formulated soil inoculants for measurable agronomic ROI across row crops, specialty crops, and managed turf.'}
+            {tagline ?? 'Recovering Fertaholic? So are we. Smart Blend is the integrated soil biology system that helps growers do more with less — season after season.'}
           </p>
         </div>
 
@@ -155,6 +202,7 @@ interface AppShellProps {
 export function AppShell({ children, footerTagline }: AppShellProps) {
   return (
     <div className="app-shell">
+      <TopBar />
       <SiteNav />
       <main className="app-main">{children}</main>
       <SiteFooter tagline={footerTagline} />

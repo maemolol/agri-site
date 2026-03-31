@@ -1,6 +1,6 @@
 {
-  "name": "biogrow-ag-sciences",
-  "version": "1.0.0",
+  "name": "smartblend-sanity-website",
+  "version": "1.2.0",
   "private": true,
   "type": "module",
   "scripts": {

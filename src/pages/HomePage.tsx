@@ -49,27 +49,35 @@ export default function HomePage() {
         display: 'flex', alignItems: 'center',
         overflow: 'hidden', background: 'var(--navy-mid)',
       }}>
+        {/* Background gradient — replace with a real field photo in production */}
         <div style={{
           position: 'absolute', inset: 0,
           background: 'linear-gradient(to right, rgba(0,30,57,0.95) 45%, rgba(0,30,57,0.5) 100%), linear-gradient(160deg, #002040 0%, #004b6e 50%, #003d5c 100%)',
         }} />
+        {/* Right-side accent panel — will sit behind a photo once added */}
         <div style={{
           position: 'absolute', right: 0, top: 0, bottom: 0, width: '50%',
           background: 'linear-gradient(135deg, rgba(0,117,141,0.15) 0%, rgba(0,48,87,0.05) 100%)',
           clipPath: 'polygon(10% 0, 100% 0, 100% 100%, 0% 100%)',
         }} />
+        {/* [PLACEHOLDER — replace background gradient with a real hero image:
+            A wide shot of a healthy crop, a grower walking fields, or
+            a before/after soil comparison. The image should feel aspirational,
+            not clinical.] */}
         <div style={{
           position: 'relative', zIndex: 2,
           maxWidth: 'var(--max-w)', margin: '0 auto',
           padding: '6rem var(--pad-x) 5rem', width: '100%',
         }}>
+          {/* Eyebrow — identity/movement tagline */}
           <span style={{
             display: 'inline-block', background: 'var(--teal)', color: 'white',
-            fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.14em',
-            textTransform: 'uppercase', padding: '0.3rem 0.85rem', marginBottom: '1.75rem',
+            fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.12em',
+            textTransform: 'uppercase', padding: '0.35rem 1rem', marginBottom: '1.75rem',
           }}>
-            {/* Placeholder */} Enhancing your farming
+            Recovering Fertaholic? You're in the right place.
           </span>
+          {/* Main headline — customer pain + promise, not product description */}
           <h1 style={{
             fontFamily: 'var(--font-head)', fontSize: 'clamp(2.2rem, 5vw, 4.2rem)',
             fontWeight: 600, lineHeight: 1.08, color: 'white',
@@ -77,6 +85,7 @@ export default function HomePage() {
           }}>
             {data?.settings?.heroHeadline ?? 'Cutting-edge soil biology for measurable crop returns'}
           </h1>
+          {/* Subheadline — the promise, simply stated */}
           <p style={{
             fontSize: '1.1rem', color: 'rgba(255,255,255,0.78)',
             maxWidth: '540px', lineHeight: 1.75, marginBottom: '2.5rem',
@@ -84,6 +93,7 @@ export default function HomePage() {
             {data?.settings?.heroSubheadline
               ?? '[PLACEHOLDER — One or two sentences that complete the promise. e.g. "Smart Blend is one integrated system that replaces multiple inputs, rebuilds your soil biology, and gives you measurable results — season after season."]'}
           </p>
+          {/* CTAs — primary action is low-friction ("See how it works"), not a hard sell */}
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             <Link to="/what-we-are" className="btn btn-outline-white" style={{ background: 'white', color: 'var(--navy)' }}>
               See how it works

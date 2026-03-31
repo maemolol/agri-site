@@ -20,7 +20,6 @@ interface FormErrors {
   message?: string
 }
 
-const FORMSPREE_URL = `https://formspree.io/f/${import.meta.env.VITE_FORMSPREE_ID ?? ''}`
 type SubmitStatus = 'idle' | 'sending' | 'sent' | 'error'
 
 type InputChangeEvent = ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -78,37 +77,31 @@ export default function ContactPage() {
     e.preventDefault()
 
     const errs = validate(form)
-    if (Object.keys(errs).length > 0) {
-      setErrors(errs)
-      return
-    }
+    if (Object.keys(errs).length > 0) { setErrors(errs); return }
 
     setStatus('sending')
 
     try {
-      const res = await fetch(FORMSPREE_URL, {
+      const body = new URLSearchParams({
+        'form-name': 'contact',
+        'bot-field': '',           // honeypot — always empty
+        name:        form.name,
+        email:       form.email,
+        message:     form.message,
+      })
+
+      const res = await fetch('/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          ...(form.company !== '' && { company: form.company }),
-          ...(form.market !== '' && { market: form.market }),
-          message: form.message,
-        }),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body.toString(),
       })
 
       if (res.ok) {
         setStatus('sent')
       } else {
-        if (import.meta.env.DEV) {
-          const body = await res.json().catch(() => null)
-          console.error('[Formspree] Submission failed:', res.status, body)
-        }
         setStatus('error')
       }
-    } catch (err) {
-      if (import.meta.env.DEV) console.error('[Formspree] Network error:', err)
+    } catch {
       setStatus('error')
     }
   }
@@ -211,8 +204,7 @@ export default function ContactPage() {
                     Message Received
                   </h3>
                   <p style={{ color: 'var(--grey-500)', fontSize: '0.9rem' }}>
-                    Thank you, {form.name}. A member of our agronomy team will be in touch within
-                    one business day.
+                    Thank you for reaching out. We will be in touch with you shortly!
                   </p>
                 </div>
               ) : (
@@ -284,35 +276,6 @@ export default function ContactPage() {
                           {errors.email}
                         </span>
                       )}
-                    </div>
-                  </div>
-
-                  <div className="form-row">
-                    <div className="form-group">
-                      <label htmlFor="company">Company / Operation</label>
-                      <input
-                        id="company"
-                        type="text"
-                        value={form.company}
-                        onChange={updateField('company')}
-                        placeholder="Smith Farms LLC"
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="market">Primary Market</label>
-                      <select
-                        id="market"
-                        value={form.market}
-                        onChange={updateField('market')}
-                      >
-                        <option value="">Select a market…</option>
-                        {(markets ?? []).map((m: Market) => (
-                          <option key={m.slug} value={m.slug}>
-                            {m.name}
-                          </option>
-                        ))}
-                      </select>
                     </div>
                   </div>
 
