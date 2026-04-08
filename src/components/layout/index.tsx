@@ -27,7 +27,7 @@ const PRIMARY_NAV = [
 
 // Secondary nav — shown as smaller links in the topbar, full links in footer
 const SECONDARY_NAV = [
-  { label: 'Lapazma',  to: '/what-we-are' },
+  { label: 'Lípasma',  to: '/what-we-are' },
   { label: 'Markets',  to: '/markets/row-crops' },
   { label: 'Insights', to: '/insights' },
 ]
