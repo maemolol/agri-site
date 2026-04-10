@@ -19,7 +19,7 @@ export interface HeroStat {
   label: string
 }
 
-export interface SiteSettings {
+export interface HomeSiteSettings {
   siteTitle: string
   tagline?: string
   contactEmail?: string
@@ -27,6 +27,8 @@ export interface SiteSettings {
   heroHeadline?: string
   heroSubheadline?: string
   heroStats?: HeroStat[]
+  homeQuote: string
+  homeQuoteAuthor: string
   footerTagline?: string
 }
 
@@ -113,7 +115,7 @@ export interface WhatWeArePage {
 
 // ── Homepage composite query result ──────────────────────────────────────────
 export interface HomepageData {
-  settings: Pick<SiteSettings, 'heroHeadline' | 'heroSubheadline' | 'heroStats'>
+  settings: Pick<HomeSiteSettings, 'heroHeadline' | 'heroSubheadline' | 'heroStats' | 'homeQuote' | 'homeQuoteAuthor'>
   markets: Pick<Market, '_id' | 'name' | 'slug' | 'displayNumber' | 'emoji' | 'overview'>[]
   comparison: ComparisonTable | null
   insights: Pick<Insight, '_id' | 'title' | 'slug' | 'tag' | 'excerpt' | 'publishedAt'>[]

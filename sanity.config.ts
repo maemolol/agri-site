@@ -13,7 +13,7 @@ if (!projectId && import.meta.env.DEV) {
   )
 }
 
-const SINGLETON_TYPES = new Set(['siteSettings', 'comparisonTable', 'whatWeArePage'])
+const SINGLETON_TYPES = new Set(['homeSiteSettings', 'comparisonTable', 'whatWeArePage'])
 
 export default defineConfig({
   name: 'smartblend',
@@ -36,9 +36,9 @@ export default defineConfig({
           .items([
             // Singletons — each links directly to a fixed document ID
             S.listItem()
-              .title('Site Settings')
-              .id('siteSettings')
-              .child(S.document().schemaType('siteSettings').documentId('siteSettings')),
+              .title('Site Settings + Home Page')
+              .id('homeSiteSettings')
+              .child(S.document().schemaType('homeSiteSettings').documentId('homeSiteSettings')),
 
             S.listItem()
               .title('What We Are Page')

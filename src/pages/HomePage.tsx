@@ -232,10 +232,10 @@ export default function HomePage() {
             fontStyle: 'italic', color: 'white', lineHeight: 1.45,
             margin: '1.5rem 0',
           }}>
-            &ldquo;[PLACEHOLDER — A real quote from a real grower. Specific results, in their own words. e.g. "I cut my input spend by $40 an acre in year one and my corn yield actually went up. I'm not going back."]&rdquo;
+            &ldquo;{data?.settings?.homeQuote ?? "[PLACEHOLDER — A real quote from a real grower. Specific results, in their own words. e.g. 'I cut my input spend by $40 an acre in year one and my corn yield actually went up. I'm not going back.']"}&rdquo;
           </blockquote>
           <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.85rem', fontWeight: 600, letterSpacing: '0.05em' }}>
-            [PLACEHOLDER — Grower name, location, crop type]
+            {data?.settings?.homeQuoteAuthor ?? '[PLACEHOLDER — Grower name, location, crop type]'}
           </p>
         </div>
       </section>

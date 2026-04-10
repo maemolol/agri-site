@@ -4,7 +4,7 @@ import { AppShell } from '@/components/layout'
 import { LoadingState } from '@/components/ui'
 import { useSanity } from '@/hooks/useSanity'
 import { SITE_SETTINGS_QUERY } from '@/lib/queries'
-import type { SiteSettings } from '@/types'
+import type { HomeSiteSettings } from '@/types'
 
 // ── Lazy pages (each route is its own chunk) ──────────────────────────────────
 const HomePage = lazy(() => import('@/pages/HomePage'))
@@ -22,9 +22,9 @@ const StudioPage = lazy(() => import('@/pages/StudioPage'))
 
 // ── Root layout ───────────────────────────────────────────────────────────────
 // Wraps all marketing pages with TopBar + SiteNav + SiteFooter.
-// Fetches siteSettings once so the footer tagline is CMS-driven.
+// Fetches homeSiteSettings once so the footer tagline is CMS-driven.
 function RootLayout() {
-  const { data: settings } = useSanity<SiteSettings>(SITE_SETTINGS_QUERY)
+  const { data: settings } = useSanity<HomeSiteSettings>(SITE_SETTINGS_QUERY)
 
   return (
     <AppShell footerTagline={settings?.footerTagline}>

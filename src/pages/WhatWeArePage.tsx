@@ -113,13 +113,8 @@ export default function WhatWeArePage() {
       {/* Pillars */}
       <section className="section grey">
         <div className="inner">
-          <span className="label-tag">What we believe</span>
-          <h2 className="section-heading">The Smart Blend philosophy</h2>
-          <p className="body-copy" style={{ maxWidth: '580px', marginBottom: '0.5rem' }}>
-            {/* [PLACEHOLDER — e.g. "This isn't just a product decision. It's a farming
-                philosophy. Here's what Smart Blend growers have in common."] */}
-            [PLACEHOLDER — Frame the pillars as a shared set of values, not a product description.]
-          </p>
+          <span className="label-tag">How it works</span>
+          <h2 className="section-heading">Three things happening in a single application.</h2>
           <div className="pillars-grid">
             {pillars.map(p => (
               <div key={p.title} style={{

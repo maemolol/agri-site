@@ -27,7 +27,7 @@ const TEAM_CARD_FIELDS = groq`
 // ── Singletons ───────────────────────────────────────────────────────────────
 
 export const SITE_SETTINGS_QUERY = groq`
-  *[_type == "siteSettings"][0]{
+  *[_type == "homeSiteSettings"][0]{
     siteTitle,
     tagline,
     contactEmail,
@@ -132,7 +132,7 @@ export const INSIGHT_QUERY = groq`
 
 export const HOMEPAGE_QUERY = groq`
   {
-    "settings": *[_type == "siteSettings"][0]{
+    "settings": *[_type == "homeSiteSettings"][0]{
       heroHeadline, heroSubheadline, heroStats[]{ number, unit, label }
     },
     "markets": *[_type == "market"] | order(order asc){

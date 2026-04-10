@@ -1,7 +1,7 @@
 import { defineType, defineField } from 'sanity';
-export const siteSettings = defineType({
-    name: 'siteSettings',
-    title: 'Site Settings',
+export const homeSiteSettings = defineType({
+    name: 'homeSiteSettings',
+    title: 'Site Settings + Home Page',
     type: 'document',
     // Singleton — delete/duplicate disabled via sanity.config.ts document.actions
     fields: [
@@ -44,9 +44,19 @@ export const siteSettings = defineType({
             ],
             validation: (r) => r.max(4),
         }),
+        defineField({
+            name: 'homeQuote',
+            title: 'Testimonial quote',
+            type: 'string'
+        }),
+        defineField({
+            name: 'homeQuoteAuthor',
+            title: 'Quote author',
+            type: 'string'
+        }),
         defineField({ name: 'footerTagline', title: 'Footer Tagline', type: 'string' }),
     ],
     preview: {
-        prepare: () => ({ title: 'Site Settings' }),
+        prepare: () => ({ title: 'Site Settings + Home Page' }),
     },
 });
