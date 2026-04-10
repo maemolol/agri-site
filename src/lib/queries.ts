@@ -35,6 +35,8 @@ export const SITE_SETTINGS_QUERY = groq`
     heroHeadline,
     heroSubheadline,
     heroStats[]{ number, unit, label },
+    homeQuote,
+    homeQuoteAuthor,
     footerTagline
   }
 `
@@ -133,7 +135,7 @@ export const INSIGHT_QUERY = groq`
 export const HOMEPAGE_QUERY = groq`
   {
     "settings": *[_type == "homeSiteSettings"][0]{
-      heroHeadline, heroSubheadline, heroStats[]{ number, unit, label }
+      heroHeadline, heroSubheadline, heroStats[]{ number, unit, label }, homeQuote, homeQuoteAuthor
     },
     "markets": *[_type == "market"] | order(order asc){
       _id, name, "slug": slug.current, displayNumber, emoji, overview
