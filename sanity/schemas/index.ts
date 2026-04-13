@@ -4,14 +4,18 @@ import { market } from './market'
 import { comparisonTable } from './comparisonTable'
 import { insight } from './insight'
 import { whatWeArePage } from './whatWeArePage'
+import { whoWeArePage } from './whoWeArePage'
 
 export const schemaTypes = [
   // Singletons
   homeSiteSettings,
   comparisonTable,
   whatWeArePage,
+  whoWeArePage,
   // Collections
   teamMember,
   market,
   insight,
 ]
+
+console.log('schema index loaded, types:', schemaTypes.map(s => s.name))

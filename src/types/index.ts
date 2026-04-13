@@ -32,7 +32,7 @@ export interface HomeSiteSettings {
   footerTagline?: string
 }
 
-// ── Team ──────────────────────────────────────────────────────────────────────
+// ── Who We Are ────────────────────────────────────────────────────────────────
 export interface TeamMember {
   _id: string
   name: string
@@ -43,6 +43,12 @@ export interface TeamMember {
   quote?: string
   bio?: PortableTextBlock[]
   order?: number
+}
+
+export interface WhoWeArePage {
+  headline?: string
+  subheadline?: string
+  companyDescription?: PortableTextBlock[]
 }
 
 // ── Market ────────────────────────────────────────────────────────────────────

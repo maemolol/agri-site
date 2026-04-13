@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import { useSanity } from '@/hooks/useSanity'
-import { ALL_TEAM_QUERY } from '@/lib/queries'
-import { LoadingState, ErrorState, PageHero, CTABand } from '@/components/ui'
+import { ALL_TEAM_QUERY, WHO_WE_ARE_QUERY } from '@/lib/queries'
+import { LoadingState, ErrorState, PageHero, CTABand, RichText } from '@/components/ui'
 import { urlFor } from '@/lib/sanity.client'
-import type { TeamMember } from '@/types'
+import type { TeamMember, WhoWeArePage as TWhoWeArePage } from '@/types'
 
 function getInitials(name: string): string {
   return name
@@ -15,6 +15,7 @@ function getInitials(name: string): string {
 }
 
 export default function WhoWeArePage() {
+  const { data: page } = useSanity<TWhoWeArePage>(WHO_WE_ARE_QUERY)
   const { data: team, loading, error } = useSanity<TeamMember[]>(ALL_TEAM_QUERY)
 
   if (loading) return <LoadingState />
@@ -24,9 +25,17 @@ export default function WhoWeArePage() {
     <div className="page-fade">
       <PageHero
         label="The Team"
-        headline="Built by agronomists, scientists & growers"
-        subheadline="Our team combines decades of soil science research with practical field experience across every major production system in North America."
+        headline={page?.headline ?? "Built by agronomists, scientists & growers"}
+        subheadline={page?.subheadline ?? "Our team combines decades of soil science research with practical field experience across every major production system in North America."}
       />
+
+      {page?.companyDescription != null && (
+        <section className="section white" style={{ paddingBottom: 0 }}>
+          <div className="inner" style={{ maxWidth: '780px' }}>
+            <RichText value={page.companyDescription} />
+          </div>
+        </section>
+      )}
 
       <section className="section white">
         <div className="inner">

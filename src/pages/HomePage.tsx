@@ -353,9 +353,9 @@ export default function HomePage() {
 
       {/* Final Call-to-Action */}
       <CTABand
-        title={/* [PLACEHOLDER — e.g. "Ready to try a different approach?"] */ "Ready to try a different approach?"}
-        subtitle={/* [PLACEHOLDER — e.g. "Talk to a grower who's already made the switch. No sales pitch — just real results."] */ "[PLACEHOLDER — Low-friction CTA. Talk to a grower, request a trial, or get a personalised recommendation.]"}
-        btnText="Start the conversation"
+        title="Ready to change the math on your operation?"
+        subtitle="Every farm is different. Let’s talk about your acres, your program, and what Lípasma could do for your bottom line. No pressure, no pitch… just a conversation between people who care about doing this right."
+        btnText="See how it could work for my field"
       />
     </div>
   )

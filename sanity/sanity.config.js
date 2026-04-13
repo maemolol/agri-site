@@ -8,7 +8,7 @@ if (!projectId && import.meta.env.DEV) {
     console.warn('[Smart Blend Studio] VITE_SANITY_PROJECT_ID is not set.\n' +
         'Copy .env.example to .env.local and add your project ID.');
 }
-const SINGLETON_TYPES = new Set(['homeSiteSettings', 'comparisonTable', 'whatWeArePage']);
+const SINGLETON_TYPES = new Set(['homeSiteSettings', 'comparisonTable', 'whatWeArePage', 'whoWeArePage']);
 export default defineConfig({
     name: 'smartblend',
     title: 'Smart Blend CMS',
@@ -33,6 +33,10 @@ export default defineConfig({
                     .title('What We Are Page')
                     .id('whatWeArePage')
                     .child(S.document().schemaType('whatWeArePage').documentId('whatWeArePage')),
+                S.listItem()
+                    .title('Who We Are Page')
+                    .id('whoWeArePage')
+                    .child(S.document().schemaType('whoWeArePage').documentId('whoWeArePage')),
                 S.listItem()
                     .title('Comparison Table')
                     .id('comparisonTable')

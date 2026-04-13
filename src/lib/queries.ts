@@ -57,6 +57,13 @@ export const WHAT_WE_ARE_QUERY = groq`
     pillars[]{ title, body }
   }
 `
+export const WHO_WE_ARE_QUERY = groq`
+  *[_type == "whoWeArePage"][0]{
+    headline,
+    subheadline,
+    companyDescription
+  }
+`
 
 // ── Collections ──────────────────────────────────────────────────────────────
 
