@@ -6,6 +6,43 @@ export const whatWeArePage = defineType({
     fields: [
         defineField({ name: 'headline', title: 'Page Headline', type: 'string' }),
         defineField({ name: 'subheadline', title: 'Page Subheadline', type: 'text', rows: 2 }),
+        defineField({ name: 'productHeadline', title: 'Product Headline', type: 'string' }),
+        defineField({ name: 'productSubheadline', title: 'Product Subheadline', type: 'text', rows: 2 }),
+        defineField({
+            name: 'productDescription',
+            title: 'What Is The Product — Description',
+            type: 'array',
+            of: [{ type: 'block' }],
+        }),
+        defineField({
+            name: 'productImage',
+            title: 'What Is The Product — Image',
+            type: 'image',
+            options: { hotspot: true },
+            fields: [
+            defineField({ name: 'alt', title: 'Alt Text', type: 'string' }),
+            ],
+        }),
+        defineField({
+            name: 'applicationHeadline',
+            title: 'How To Apply — Headline',
+            type: 'string',
+        }),
+        defineField({
+            name: 'applicationDescription',
+            title: 'How To Apply — Description',
+            type: 'array',
+            of: [{ type: 'block' }],
+        }),
+        defineField({
+            name: 'applicationImage',
+            title: 'How To Apply — Image',
+            type: 'image',
+            options: { hotspot: true },
+            fields: [
+            defineField({ name: 'alt', title: 'Alt Text', type: 'string' }),
+            ],
+        }),
         defineField({ name: 'missionHeading', title: 'Mission Section Heading', type: 'string' }),
         defineField({
             name: 'missionBody',

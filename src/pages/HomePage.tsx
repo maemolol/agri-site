@@ -96,7 +96,7 @@ export default function HomePage() {
           {/* CTAs — primary action is low-friction ("See how it works"), not a hard sell */}
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             <Link to="/what-we-are" className="btn btn-outline-white" style={{ background: 'white', color: 'var(--navy)' }}>
-              See how it works
+              See what’s possible with one change
             </Link>
             <Link to="/contact" className="btn btn-outline-white">
               Talk to a grower

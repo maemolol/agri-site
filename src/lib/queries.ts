@@ -54,7 +54,14 @@ export const WHAT_WE_ARE_QUERY = groq`
     missionHeading,
     missionBody,
     stats[]{ number, label },
-    pillars[]{ title, body }
+    pillars[]{ title, body },
+    productHeadline,
+    productSubheadline,
+    productDescription,
+    productImage { asset, alt, "url": asset->url, hotspot, crop },
+    applicationHeadline,
+    applicationDescription,
+    applicationImage { asset, alt, "url": asset->url, hotspot, crop },
   }
 `
 export const WHO_WE_ARE_QUERY = groq`

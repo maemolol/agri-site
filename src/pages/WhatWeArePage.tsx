@@ -3,6 +3,14 @@ import { useSanity } from '@/hooks/useSanity'
 import { WHAT_WE_ARE_QUERY } from '@/lib/queries'
 import { LoadingState, ErrorState, PageHero, CTABand, RichText } from '@/components/ui'
 import type { WhatWeArePage as TWhatWeArePage } from '@/types'
+import imageUrlBuilder from '@sanity/image-url'
+import { client } from "../lib/sanity.client"
+
+const builder = imageUrlBuilder(client)
+
+function urlFor(source) {
+  return builder.image(source)
+}
 
 export default function WhatWeArePage() {
   const { data, loading, error } = useSanity<TWhatWeArePage>(WHAT_WE_ARE_QUERY)
@@ -39,6 +47,103 @@ export default function WhatWeArePage() {
         headline={data?.headline ?? '[PLACEHOLDER — e.g. "Nature already knows how to grow things. We just stopped listening."]'}
         subheadline={data?.subheadline ?? '[PLACEHOLDER — One sentence that captures the philosophy. e.g. "Smart Blend is built on a simple idea: when you work with the biology of your soil instead of against it, everything gets easier."]'}
       />
+
+      {/* ── WHAT IS THE PRODUCT ──────────────────────────────────────────── */}
+      <section className="section white">
+        <div className="inner">
+          <div className='two-col'>
+            {/* Text column */}
+            <div>
+              <span className="label-tag">What is the product</span>
+              <h2 className="section-heading">
+                {data?.productHeadline ?? '[PLACEHOLDER — Product headline]'}
+              </h2>
+              {data?.productSubheadline != null && (
+                <p className="body-copy" style={{ fontSize: '1.1rem', marginBottom: '1.5rem' }}>
+                  {data.productSubheadline}
+                </p>
+              )}
+              {data?.productDescription != null
+                ? <RichText value={data.productDescription} />
+                : <p className="body-copy">[PLACEHOLDER — Product description]</p>
+              }
+            </div>
+            {/* Image column */}
+            <div className="two-col-img" style={{aspectRatio: 'unset'}}>
+              {data?.productImage?.url != null ? (
+                <img
+                  src={urlFor(data.productImage).height(675).fit('max').url()}
+                  alt={data.productImage.alt ?? data.productHeadline ?? ''}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              ) : (
+                <div className="photo-placeholder" style={{ background: 'linear-gradient(135deg, #002a14 0%, #1a6b3a 100%)' }}>
+                  🌱
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pillars */}
+      <section className="section grey">
+        <div className="inner">
+          <span className="label-tag">How it works</span>
+          <h2 className="section-heading">Three things happening in a single application.</h2>
+          <div className="pillars-grid">
+            {pillars.map(p => (
+              <div key={p.title} style={{
+                background: 'var(--white)', padding: '2.25rem 2rem',
+                borderTop: '3px solid var(--teal)',
+              }}>
+                <h3 style={{
+                  fontFamily: 'var(--font-head)', fontSize: '1.2rem',
+                  fontWeight: 600, color: 'var(--navy)', marginBottom: '0.75rem',
+                }}>
+                  {p.title}
+                </h3>
+                <p style={{ fontSize: '0.9rem', color: 'var(--grey-700)', lineHeight: 1.7 }}>
+                  {p.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── HOW TO APPLY ─────────────────────────────────────────────────── */}
+      <section className="section grey">
+        <div className="inner">
+          <div className='two-col rev'>
+            {/* Text column */}
+            <div>
+              <span className="label-tag">How to apply</span>
+              <h2 className="section-heading">
+                {data?.applicationHeadline ?? '[PLACEHOLDER — Application headline]'}
+              </h2>
+              {data?.applicationDescription != null
+                ? <RichText value={data.applicationDescription} />
+                : <p className="body-copy">[PLACEHOLDER — Application description]</p>
+              }
+            </div>
+            {/* Image column */}
+            <div className="two-col-img" style={{aspectRatio: 'unset'}}>
+              {data?.applicationImage?.url != null ? (
+                <img
+                  src={urlFor(data.applicationImage).height(675).fit('max').url()}
+                  alt={data.applicationImage.alt ?? data.applicationHeadline ?? ''}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              ) : (
+                <div className="photo-placeholder" style={{ background: 'linear-gradient(135deg, #003057 0%, #00758d 100%)' }}>
+                  🔬
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Origin Story */}
       <section className="section white">
@@ -110,32 +215,6 @@ export default function WhatWeArePage() {
         </div>
       </section>
 
-      {/* Pillars */}
-      <section className="section grey">
-        <div className="inner">
-          <span className="label-tag">How it works</span>
-          <h2 className="section-heading">Three things happening in a single application.</h2>
-          <div className="pillars-grid">
-            {pillars.map(p => (
-              <div key={p.title} style={{
-                background: 'var(--white)', padding: '2.25rem 2rem',
-                borderTop: '3px solid var(--teal)',
-              }}>
-                <h3 style={{
-                  fontFamily: 'var(--font-head)', fontSize: '1.2rem',
-                  fontWeight: 600, color: 'var(--navy)', marginBottom: '0.75rem',
-                }}>
-                  {p.title}
-                </h3>
-                <p style={{ fontSize: '0.9rem', color: 'var(--grey-700)', lineHeight: 1.7 }}>
-                  {p.body}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── COMMUNITY INVITATION ─────────────────────────────────────────── */}
       <section className="section white">
         <div className="inner" style={{ maxWidth: '680px' }}>
@@ -165,9 +244,9 @@ export default function WhatWeArePage() {
       </section>
 
       <CTABand
-        title={/* [PLACEHOLDER — e.g. "See what Smart Blend looks like on your operation."] */ "[PLACEHOLDER — Closing CTA headline]"}
-        subtitle={/* [PLACEHOLDER — e.g. "We'll design a trial specific to your crop, your soil, and your goals — no obligation."] */ "[PLACEHOLDER — One sentence. Specific, low-friction next step.]"}
-        btnText="Design my trial"
+        title="Ready to change the math on your operation?"
+        subtitle="Every farm is different. Let’s talk about your acres, your program, and what Lípasma could do for your bottom line. No pressure, no pitch… just a conversation between people who care about doing this right."
+        btnText="See how it could work for my field"
         to="/contact"
       />
     </div>

@@ -117,6 +117,15 @@ export interface WhatWeArePage {
   missionBody?: PortableTextBlock[]
   stats?: PageStat[]
   pillars?: Pillar[]
+  // What is the product
+  productHeadline?: string
+  productSubheadline?: string
+  productDescription?: PortableTextBlock[]
+  productImage?: SanityImage
+  // How to apply
+  applicationHeadline?: string
+  applicationDescription?: PortableTextBlock[]
+  applicationImage?: SanityImage
 }
 
 // ── Homepage composite query result ──────────────────────────────────────────
