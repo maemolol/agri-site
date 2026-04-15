@@ -27,6 +27,21 @@ export interface HomeSiteSettings {
   heroHeadline?: string
   heroSubheadline?: string
   heroStats?: HeroStat[]
+  // What is the product
+  productHeadline?: string
+  productSubheadline?: string
+  productDescription?: PortableTextBlock[]
+  productImage?: SanityImage
+  // How to apply
+  applicationHeadline?: string
+  applicationDescription?: PortableTextBlock[]
+  applicationImage?: SanityImage
+  originHeading?: string
+  originBody?: PortableTextBlock[]
+  originImage?: SanityImage
+  resultsHeadline?: string
+  resultsDescription?: PortableTextBlock[]
+  resultsImage: SanityImage
   homeQuote: string
   homeQuoteAuthor: string
   footerTagline?: string
@@ -130,7 +145,7 @@ export interface WhatWeArePage {
 
 // ── Homepage composite query result ──────────────────────────────────────────
 export interface HomepageData {
-  settings: Pick<HomeSiteSettings, 'heroHeadline' | 'heroSubheadline' | 'heroStats' | 'homeQuote' | 'homeQuoteAuthor'>
+  settings: Pick<HomeSiteSettings, 'heroHeadline' | 'heroSubheadline' | 'heroStats' | 'productHeadline' | 'productSubheadline' | 'productDescription'| 'productImage' | 'applicationHeadline' | 'applicationDescription' | 'applicationImage' | 'originHeading' | 'originBody' | 'originImage' | 'resultsHeadline' | 'resultsDescription' | 'resultsImage' | 'homeQuote' | 'homeQuoteAuthor'>
   markets: Pick<Market, '_id' | 'name' | 'slug' | 'displayNumber' | 'emoji' | 'overview'>[]
   comparison: ComparisonTable | null
   insights: Pick<Insight, '_id' | 'title' | 'slug' | 'tag' | 'excerpt' | 'publishedAt'>[]

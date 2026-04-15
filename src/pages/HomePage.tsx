@@ -1,8 +1,17 @@
 import { Link } from 'react-router-dom'
 import { useSanity } from '@/hooks/useSanity'
 import { HOMEPAGE_QUERY } from '@/lib/queries'
-import { LoadingState, ErrorState, CTABand, CellVal, InsightCard } from '@/components/ui'
+import { LoadingState, ErrorState, CTABand, CellVal, InsightCard, RichText } from '@/components/ui'
 import type { HomepageData } from '@/types'
+import imageUrlBuilder from '@sanity/image-url'
+import { client } from "../lib/sanity.client"
+import { SanityImageSource } from '@sanity/image-url/lib/types/types'
+
+const builder = imageUrlBuilder(client)
+
+function urlFor(source: SanityImageSource) {
+  return builder.image(source)
+}
 
 // Fallback data shown while Sanity loads (or if not yet populated)
 const FALLBACK_STATS = [
@@ -119,45 +128,78 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* ── EDITORIAL: Problem ───────────────────────────────────────────── */}
-      <section className="section grey">
+      {/* ── WHAT IS THE PRODUCT ──────────────────────────────────────────── */}
+      <section className="section white">
         <div className="inner">
-          <div className="two-col">
-            <div className="two-col-img">
-              {/* [PLACEHOLDER — Replace with a photo of: depleted soil, a frustrated
-                  grower looking at input receipts, or a crop that underperformed.
-                  Emotional, relatable imagery works better than stock here.] */}
-              <div className="photo-placeholder" style={{ background: 'linear-gradient(135deg, #1a1a0a 0%, #3d3d1a 100%)' }}>
-                📋
-              </div>
-            </div>
+          <div className='two-col'>
+            {/* Text column */}
             <div>
-              <span className="label-tag">Sound familiar?</span>
+              <span className="label-tag">What is the product</span>
               <h2 className="section-heading">
-                {/* [PLACEHOLDER — e.g. "More inputs. More decisions. Same problems."] */}
-                More inputs. More decisions. Same problems.
+                {data?.settings?.productHeadline ?? '[PLACEHOLDER — Product headline]'}
               </h2>
-              <p className="body-copy" style={{ marginBottom: '1rem' }}>
-                {/* [PLACEHOLDER — Describe the grower's frustration in their own language.
-                    e.g. "Every season you're adding another product to the program. Another
-                    rep selling you something. Another input cost eating into your margin.
-                    And yet the soil still isn't where it needs to be."] */}
-                [PLACEHOLDER — Describe the grower's frustration. Every season, another product added to the program. Another rep, another input cost, the same soil problems.]
-              </p>
-              <p className="body-copy" style={{ marginBottom: '1.5rem' }}>
-                {/* [PLACEHOLDER — The deeper insight: the system is broken, not the grower.
-                    e.g. "The problem isn't that you're doing it wrong. The problem is that
-                    conventional programs are designed to keep you buying — not to fix the
-                    underlying biology that drives everything."] */}
-                [PLACEHOLDER — The deeper insight: the system is designed to keep growers buying, not to fix the underlying biology.]
-              </p>
-              <Link to="/what-we-are" className="btn btn-navy">There's a better way →</Link>
+              {data?.settings?.productSubheadline != null && (
+                <p className="body-copy" style={{ fontSize: '1.1rem', marginBottom: '1.5rem' }}>
+                  {data.settings.productSubheadline}
+                </p>
+              )}
+              {data?.settings?.productDescription != null
+                ? <RichText value={data.settings.productDescription} />
+                : <p className="body-copy">[PLACEHOLDER — Product description]</p>
+              }
+            </div>
+            {/* Image column */}
+            <div className="two-col-img" style={{aspectRatio: 'unset'}}>
+              {data?.settings?.productImage?.url != null ? (
+                <img
+                  src={urlFor(data.settings.productImage).height(675).fit('max').url()}
+                  alt={data.settings.productImage.alt ?? data.settings.productHeadline ?? ''}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              ) : (
+                <div className="photo-placeholder" style={{ background: 'linear-gradient(135deg, #002a14 0%, #1a6b3a 100%)' }}>
+                  🌱
+                </div>
+              )}
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── EDITORIAL: Solution ──────────────────────────────────────────── */}
+      {/* ── HOW TO APPLY ─────────────────────────────────────────────────── */}
+      <section className="section grey">
+        <div className="inner">
+          <div className='two-col rev'>
+            {/* Text column */}
+            <div>
+              <span className="label-tag">How to apply</span>
+              <h2 className="section-heading">
+                {data?.settings?.applicationHeadline ?? '[PLACEHOLDER — Application headline]'}
+              </h2>
+              {data?.settings?.applicationDescription != null
+                ? <RichText value={data.settings.applicationDescription} />
+                : <p className="body-copy">[PLACEHOLDER — Application description]</p>
+              }
+            </div>
+            {/* Image column */}
+            <div className="two-col-img" style={{aspectRatio: 'unset'}}>
+              {data?.settings?.applicationImage?.url != null ? (
+                <img
+                  src={urlFor(data.settings.applicationImage).height(675).fit('max').url()}
+                  alt={data.settings.applicationImage.alt ?? data.settings.applicationHeadline ?? ''}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              ) : (
+                <div className="photo-placeholder" style={{ background: 'linear-gradient(135deg, #003057 0%, #00758d 100%)' }}>
+                  🔬
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Origin story ──────────────────────────────────────────── */}
       <section className="section white">
         <div className="inner">
           <div className="two-col rev">
@@ -165,28 +207,25 @@ export default function HomePage() {
               {/* [PLACEHOLDER — Replace with a photo of: a healthy thriving crop,
                   a grower smiling in a field, or a side-by-side yield comparison.
                   The "after" image to contrast with the problem section above.] */}
-              <div className="photo-placeholder" style={{ background: 'linear-gradient(135deg, #002a14 0%, #1a6b3a 100%)' }}>
-                🌾
-              </div>
+              {data?.settings?.originImage?.url != null ? (
+                <img
+                  src={urlFor(data.settings.originImage).height(675).fit('max').url()}
+                  alt={data.settings.originImage.alt ?? data.settings.applicationHeadline ?? ''}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              ) : (
+                <div className="photo-placeholder" style={{ background: 'linear-gradient(135deg, #003057 0%, #00758d 100%)' }}>
+                  🌽
+                </div>
+              )}
             </div>
             <div>
               <span className="label-tag">The Smart Blend difference</span>
               <h2 className="section-heading">
-                {/* [PLACEHOLDER — e.g. "One system. Built from 20 years in the field."] */}
-                One system. Built from 20 years in the field.
+                {data?.settings?.originHeading ?? "One system. Built from 20 years in the field."}
               </h2>
               <p className="body-copy" style={{ marginBottom: '1rem' }}>
-                {/* [PLACEHOLDER — Tom's story, briefly. A grower who got tired of the
-                    conventional approach and spent 20 years building something better.
-                    Real, specific, personal.] */}
-                [PLACEHOLDER — Tom's story: 20 years of experimentation, real-world constraints, one grower's mission to build something that actually worked.]
-              </p>
-              <p className="body-copy" style={{ marginBottom: '1.5rem' }}>
-                {/* [PLACEHOLDER — What Smart Blend actually is, in plain language.
-                    e.g. "Smart Blend integrates fertility and biology into one program —
-                    replacing the stack of products you're currently using with a single
-                    system that works with your soil, not against it."] */}
-                [PLACEHOLDER — Smart Blend integrates fertility and biology into one program — replacing the stack of products with a single system that works with the soil.]
+                {data?.settings?.originBody != null ? <RichText value={data.settings.originBody} /> : "[PLACEHOLDER — Tom's story: 20 years of experimentation, real-world constraints, one grower's mission to build something that actually worked.]"}
               </p>
               <Link to="/who-we-are" className="btn btn-navy">Meet the team →</Link>
             </div>
@@ -220,29 +259,9 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Growers voice */}
-      <section className="section navy">
-        <div className="inner" style={{ textAlign: 'center', maxWidth: '760px', margin: '0 auto' }}>
-          <span className="label-tag" style={{ color: 'rgba(255,255,255,0.45)' }}>From the field</span>
-          {/* [PLACEHOLDER — Replace with a real grower quote. First name, location,
-              and crop type adds credibility. A photo of the grower or their farm
-              alongside the quote makes this significantly more powerful.] */}
-          <blockquote style={{
-            fontFamily: 'var(--font-head)', fontSize: 'clamp(1.3rem, 2.5vw, 2rem)',
-            fontStyle: 'italic', color: 'white', lineHeight: 1.45,
-            margin: '1.5rem 0',
-          }}>
-            &ldquo;{data?.settings?.homeQuote ?? "[PLACEHOLDER — A real quote from a real grower. Specific results, in their own words. e.g. 'I cut my input spend by $40 an acre in year one and my corn yield actually went up. I'm not going back.']"}&rdquo;
-          </blockquote>
-          <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.85rem', fontWeight: 600, letterSpacing: '0.05em' }}>
-            {data?.settings?.homeQuoteAuthor ?? '[PLACEHOLDER — Grower name, location, crop type]'}
-          </p>
-        </div>
-      </section>
-
       {/* Comparison table */}
       {rows.length > 0 && (
-        <section className="section grey">
+        <section className="section white">
           <div className="inner">
             <span className="label-tag">How we compare</span>
             <h2 className="section-heading">Smart Blend vs the conventional approach</h2>
@@ -275,6 +294,59 @@ export default function HomePage() {
           </div>
         </section>
       )}
+
+      {/* ── WHAT IS THE PRODUCT ──────────────────────────────────────────── */}
+      <section className="section grey">
+        <div className="inner">
+          <div className='two-col'>
+            {/* Text column */}
+            <div>
+              <span className="label-tag">Results</span>
+              <h2 className="section-heading">
+                {data?.settings?.resultsHeadline ?? '[PLACEHOLDER — Results headline]'}
+              </h2>
+              {data?.settings?.resultsDescription != null
+                ? <RichText value={data.settings.resultsDescription} />
+                : <p className="body-copy">[PLACEHOLDER — Results description]</p>
+              }
+            </div>
+            {/* Image column */}
+            <div className="two-col-img" style={{aspectRatio: 'unset'}}>
+              {data?.settings?.resultsImage?.url != null ? (
+                <img
+                  src={urlFor(data.settings.resultsImage).height(675).fit('max').url()}
+                  alt={data.settings.resultsImage.alt ?? data.settings.productHeadline ?? ''}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              ) : (
+                <div className="photo-placeholder" style={{ background: 'linear-gradient(135deg, #002a14 0%, #1a6b3a 100%)' }}>
+                  🌱
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Growers voice */}
+      <section className="section navy">
+        <div className="inner" style={{ textAlign: 'center', maxWidth: '760px', margin: '0 auto' }}>
+          <span className="label-tag" style={{ color: 'rgba(255,255,255,0.45)' }}>From the field</span>
+          {/* [PLACEHOLDER — Replace with a real grower quote. First name, location,
+              and crop type adds credibility. A photo of the grower or their farm
+              alongside the quote makes this significantly more powerful.] */}
+          <blockquote style={{
+            fontFamily: 'var(--font-head)', fontSize: 'clamp(1.3rem, 2.5vw, 2rem)',
+            fontStyle: 'italic', color: 'white', lineHeight: 1.45,
+            margin: '1.5rem 0',
+          }}>
+            &ldquo;{data?.settings?.homeQuote ?? "[PLACEHOLDER — A real quote from a real grower. Specific results, in their own words. e.g. 'I cut my input spend by $40 an acre in year one and my corn yield actually went up. I'm not going back.']"}&rdquo;
+          </blockquote>
+          <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.85rem', fontWeight: 600, letterSpacing: '0.05em' }}>
+            {data?.settings?.homeQuoteAuthor ?? '[PLACEHOLDER — Grower name, location, crop type]'}
+          </p>
+        </div>
+      </section>
 
       {/* ── MARKETS STRIP ────────────────────────────────────────────────── */}
       {markets.length > 0 && (
