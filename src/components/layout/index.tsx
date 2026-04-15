@@ -37,22 +37,6 @@ export function SiteNav() {
 
   return (
     <>
-      {/* Secondary nav bar — sits above main nav on desktop */}
-      <div className="secondary-nav-bar">
-        <div className="secondary-nav-inner">
-          {SECONDARY_NAV.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              className={({ isActive }) =>
-                isActive ? 'secondary-nav-item secondary-nav-item--active' : 'secondary-nav-item'
-              }
-            >
-              {item.label}
-            </NavLink>
-          ))}
-        </div>
-      </div>
       <nav className="site-nav">
         <div className="nav-inner">
           {/* Logo */}
@@ -103,19 +87,6 @@ export function SiteNav() {
               to={item.to}
               className={({ isActive }) =>
                 isActive ? 'mobile-nav-item mobile-nav-item--active' : 'mobile-nav-item'
-              }
-              onClick={() => setOpen(false)}
-            >
-              {item.label}
-            </NavLink>
-          ))}
-          <div className="mobile-nav-divider" />
-          {SECONDARY_NAV.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              className={({ isActive }) =>
-                isActive ? 'mobile-nav-item mobile-nav-item--secondary mobile-nav-item--active' : 'mobile-nav-item mobile-nav-item--secondary'
               }
               onClick={() => setOpen(false)}
             >
