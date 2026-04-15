@@ -66,6 +66,16 @@ export interface WhoWeArePage {
   companyDescription?: PortableTextBlock[]
 }
 
+// ── Events ────────────────────────────────────────────────────────────────────
+export interface EventsPage {
+  eventName?: string
+  eventDescription?: string
+  eventDate?: string
+  eventTime?: string
+  eventLocation?: string
+  eventCapacity?: string
+}
+
 // ── Market ────────────────────────────────────────────────────────────────────
 export interface Market {
   _id: string

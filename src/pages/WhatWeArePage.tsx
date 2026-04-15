@@ -216,34 +216,6 @@ export default function WhatWeArePage() {
         </div>
       </section>
 
-      {/* ── COMMUNITY INVITATION ─────────────────────────────────────────── */}
-      <section className="section white">
-        <div className="inner" style={{ maxWidth: '680px' }}>
-          <span className="label-tag">Join the movement</span>
-          <h2 className="section-heading">
-            {/* [PLACEHOLDER — e.g. "You're not just changing a product. You're changing
-                what farming means on your operation."] */}
-            [PLACEHOLDER — An identity statement. e.g. "You're not just switching products. You're becoming a different kind of farmer."]
-          </h2>
-          <p className="body-copy" style={{ marginBottom: '1rem' }}>
-            {/* [PLACEHOLDER — e.g. "Smart Blend growers don't just see better input
-                economics. They see a different relationship with their land — one
-                where the soil is an ally, not an obstacle."] */}
-            [PLACEHOLDER — Paint the picture of life as a Smart Blend farmer. The community, the shared results, the sense of doing something that actually works.]
-          </p>
-          <p className="body-copy" style={{ marginBottom: '2rem' }}>
-            {/* [PLACEHOLDER — e.g. "We're building a network of growers who are willing
-                to share what they're seeing — inputs, yields, soil data. Because
-                farmers trust farmers, and transparency is how we grow together."] */}
-            [PLACEHOLDER — The community and peer validation angle. Farmers trust farmers. Transparency. Shared results.]
-          </p>
-          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            <Link to="/contact" className="btn btn-navy">Start a trial on your operation</Link>
-            <Link to="/insights" className="btn btn-outline-navy">Read grower results</Link>
-          </div>
-        </div>
-      </section>
-
       <CTABand
         title="Ready to change the math on your operation?"
         subtitle="Every farm is different. Let’s talk about your acres, your program, and what Lípasma could do for your bottom line. No pressure, no pitch… just a conversation between people who care about doing this right."

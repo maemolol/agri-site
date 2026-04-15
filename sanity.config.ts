@@ -46,9 +46,19 @@ export default defineConfig({
               .child(S.document().schemaType('whatWeArePage').documentId('whatWeArePage')),
 
             S.listItem()
+              .title('Who We Are Page')
+              .id('whoWeArePage')
+              .child(S.document().schemaType('whoWeArePage').documentId('whoWeArePage')),
+
+            S.listItem()
               .title('Comparison Table')
               .id('comparisonTable')
               .child(S.document().schemaType('comparisonTable').documentId('comparisonTable')),
+
+            S.listItem()
+              .title('Events Page')
+              .id('eventsPage')
+              .child(S.document().schemaType('eventsPage').documentId('eventsPage')),
 
             S.divider(),
 

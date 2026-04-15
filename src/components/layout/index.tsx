@@ -202,7 +202,6 @@ interface AppShellProps {
 export function AppShell({ children, footerTagline }: AppShellProps) {
   return (
     <div className="app-shell">
-      <TopBar />
       <SiteNav />
       <main className="app-main">{children}</main>
       <SiteFooter tagline={footerTagline} />

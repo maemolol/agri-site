@@ -1,17 +1,8 @@
 import { useState, type ChangeEvent, type FormEvent } from 'react'
+import { useSanity } from '@/hooks/useSanity'
 import { PageHero, CTABand } from '@/components/ui'
-
-// ── Event details ─────────────────────────────────────────────────────────────
-// [PLACEHOLDER — Update these constants with real event details before launch.
-//  These are used throughout the page so you only need to change them here.]
-const EVENT = {
-  name:     '[PLACEHOLDER — e.g. "Smart Blend Field Day 2025"]',
-  date:     '[PLACEHOLDER — e.g. "Saturday 14 June 2025"]',
-  time:     '[PLACEHOLDER — e.g. "9:00 AM – 3:00 PM"]',
-  location: '[PLACEHOLDER — e.g. "Smith Family Farm, 123 Rural Road, Toowoomba QLD"]',
-  details:  '[PLACEHOLDER — A paragraph describing what attendees will see and do. Live soil demonstrations, trial result presentations, Q&A with Tom, lunch provided, etc.]',
-  capacity: '[PLACEHOLDER — e.g. "Limited to 120 growers"]',
-}
+import { EventsPage as TEventsPage } from '@/types'
+import { EVENTS_QUERY } from '@/lib/queries'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 interface FormState {
@@ -66,6 +57,16 @@ export default function EventsPage() {
   const [form, setForm] = useState<FormState>(INITIAL_FORM)
   const [errors, setErrors] = useState<FormErrors>({})
   const [status, setStatus] = useState<SubmitStatus>('idle')
+  const { data, loading, error } = useSanity<TEventsPage>(EVENTS_QUERY)
+
+  const EVENT = {
+    name: data?.eventName ?? '[PLACEHOLDER — e.g. "Smart Blend Field Day 2025"]',
+    date: data?.eventDate ?? '[PLACEHOLDER — e.g. "Saturday 14 June 2025"]',
+    time: data?.eventTime ?? '[PLACEHOLDER — e.g. "9:00 AM – 3:00 PM"]',
+    location: data?.eventLocation ?? '[PLACEHOLDER — e.g. "Smith Family Farm, 123 Rural Road, Toowoomba QLD"]',
+    details:  data?.eventDescription ?? '[PLACEHOLDER — A paragraph describing what attendees will see and do. Live soil demonstrations, trial result presentations, Q&A with Tom, lunch provided, etc.]',
+    capacity: data?.eventCapacity ?? '[PLACEHOLDER — e.g. "Limited to 120 growers"]',
+  }
 
   function updateField(field: keyof FormState) {
     return (e: InputChangeEvent) => {
@@ -114,7 +115,7 @@ export default function EventsPage() {
       <PageHero
         label="Upcoming events"
         headline="Smart Blend Field Day"
-        subheadline="See Lapazma in action. Talk to growers who are already using it. Walk the trials yourself."
+        subheadline="See Lípasma in action. Talk to growers who are already using it. Walk the trials yourself."
       />
 
       {/* ── EVENT DETAILS ──────────────────────────────────────────────────── */}

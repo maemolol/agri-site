@@ -85,6 +85,17 @@ export const WHO_WE_ARE_QUERY = groq`
   }
 `
 
+export const EVENTS_QUERY = groq`
+  *[_type == "eventsPage"][0]{
+    eventName,
+    eventDescription,
+    eventDate,
+    eventTime,
+    eventLocation,
+    eventCapacity
+  }
+`
+
 // ── Collections ──────────────────────────────────────────────────────────────
 
 export const ALL_TEAM_QUERY = groq`

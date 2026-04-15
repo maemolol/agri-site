@@ -5,12 +5,14 @@ import { comparisonTable } from './comparisonTable';
 import { insight } from './insight';
 import { whatWeArePage } from './whatWeArePage';
 import { whoWeArePage } from './whoWeArePage';
+import { eventsPage } from './eventsPage';
 export const schemaTypes = [
     // Singletons
     homeSiteSettings,
     comparisonTable,
     whatWeArePage,
     whoWeArePage,
+    eventsPage,
     // Collections
     teamMember,
     market,

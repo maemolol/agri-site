@@ -21,24 +21,6 @@ const FALLBACK_STATS = [
   { number: '3',   unit: '×', label: 'Average ROI vs conventional programs' },
 ]
 
-const BENEFITS = [
-  {
-    icon: '💰',
-    title: 'Cut your input costs',
-    body: '[PLACEHOLDER — e.g. "Growers using Smart Blend report cutting their fertility spend by an average of 40% in the first season — without sacrificing yield."]',
-  },
-  {
-    icon: '🌱',
-    title: 'Stop fighting your soil',
-    body: '[PLACEHOLDER — e.g. "Decades of synthetic programs deplete the biology your soil depends on. Smart Blend rebuilds it — turning your land into an asset, not a liability."]',
-  },
-  {
-    icon: '🔄',
-    title: 'One system. Not five products.',
-    body: '[PLACEHOLDER — e.g. "Smart Blend replaces a shelf full of individual inputs with a single integrated approach. Less to manage. Less to buy. More consistent results."]',
-  },
-]
-
 export default function HomePage() {
   const { data, loading, error } = useSanity<HomepageData>(HOMEPAGE_QUERY)
 
@@ -233,44 +215,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── BENEFITS ─────────────────────────────────────────────── */}
-      <section className="section grey" style={{ paddingBottom: 0 }}>
-        <div className="inner">
-          <span className="label-tag">What changes</span>
-          <h2 className="section-heading">What growers actually experience</h2>
-          <p className="body-copy" style={{ maxWidth: '560px', marginBottom: '2rem' }}>
-            {/* [PLACEHOLDER — One sentence framing: e.g. "This isn't about adding
-                another product to your program. It's about changing what your
-                program is built on."] */}
-            [PLACEHOLDER — Frame this as a transformation, not a product feature list.]
-          </p>
-        </div>
-      </section>
-      <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '0 var(--pad-x) clamp(3rem,6vw,5.5rem)' }}>
-        <div className="product-grid">
-          {BENEFITS.map(b => (
-            <div key={b.title} className="product-card">
-              <div className="product-card-icon">{b.icon}</div>
-              <h3>{b.title}</h3>
-              <p>{b.body}</p>
-              <Link to="/what-we-are" className="btn-ghost">Learn more <span className="arrow">→</span></Link>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* Comparison table */}
       {rows.length > 0 && (
-        <section className="section white">
+        <section className="section grey">
           <div className="inner">
             <span className="label-tag">How we compare</span>
             <h2 className="section-heading">Smart Blend vs the conventional approach</h2>
-            <p className="body-copy" style={{ marginBottom: '2rem', maxWidth: '580px' }}>
-              {/* [PLACEHOLDER — Frame the comparison around grower outcomes, not
-                  technical features. e.g. "We don't ask you to choose between
-                  performance and sustainability. You get both."] */}
-              [PLACEHOLDER — Frame the table around outcomes for the grower, not technical specs.]
-            </p>
             <div className="comparison-wrap">
               <table className="comp-table">
                 <thead>
@@ -296,7 +246,7 @@ export default function HomePage() {
       )}
 
       {/* ── WHAT IS THE PRODUCT ──────────────────────────────────────────── */}
-      <section className="section grey">
+      <section className="section white">
         <div className="inner">
           <div className='two-col'>
             {/* Text column */}
