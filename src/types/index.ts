@@ -60,10 +60,19 @@ export interface TeamMember {
   order?: number
 }
 
+export interface PodcastLink {
+  title: string
+  show?: string
+  url: string
+  description?: string
+}
+
 export interface WhoWeArePage {
   headline?: string
   subheadline?: string
   companyDescription?: PortableTextBlock[]
+  companyImage?: SanityImage
+  podcastLinks?: PodcastLink[]
 }
 
 // ── Events ────────────────────────────────────────────────────────────────────

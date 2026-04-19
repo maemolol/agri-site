@@ -8,6 +8,8 @@ import type { Market } from '@/types'
 
 interface FormState {
   name: string
+  lastName: string
+  phone: string
   email: string
   company: string
   market: string
@@ -16,6 +18,8 @@ interface FormState {
 
 interface FormErrors {
   name?: string
+  lastName?: string
+  phone?: string
   email?: string
   message?: string
 }
@@ -28,6 +32,8 @@ type InputChangeEvent = ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTM
 
 const INITIAL_FORM: FormState = {
   name: '',
+  lastName: '',
+  phone: '',
   email: '',
   company: '',
   market: '',
@@ -86,6 +92,8 @@ export default function ContactPage() {
         'form-name': 'contact',
         'bot-field': '',           // honeypot — always empty
         name:        form.name,
+        lastName: form.lastName,
+        phone: form.phone,
         email:       form.email,
         message:     form.message,
       })
@@ -242,19 +250,55 @@ export default function ContactPage() {
                   <div className="form-row">
                     <div className="form-group">
                       <label htmlFor="name">
-                        Full Name <span className="required-star">*</span>
+                        First Name <span className="required-star">*</span>
                       </label>
                       <input
                         id="name"
                         type="text"
                         value={form.name}
                         onChange={updateField('name')}
-                        placeholder="Jane Smith"
+                        placeholder="Jane"
                         aria-describedby={errors.name != null ? 'name-error' : undefined}
                       />
                       {errors.name != null && (
                         <span id="name-error" className="form-error" role="alert">
                           {errors.name}
+                        </span>
+                      )}
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="last-name">
+                        Last Name <span className="required-star">*</span>
+                      </label>
+                      <input
+                        id="last-name" type="text"
+                        value={form.lastName} onChange={updateField('lastName')}
+                        placeholder="Smith"
+                        aria-describedby={errors.lastName ? 'last-name-error' : undefined}
+                      />
+                      {errors.lastName && (
+                        <span id="last-name-error" className="form-error" role="alert">
+                          {errors.lastName}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Phone + e-mail */}
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label htmlFor="phone">
+                        Phone <span className="required-star">*</span>
+                      </label>
+                      <input
+                        id="phone" type="tel"
+                        value={form.phone} onChange={updateField('phone')}
+                        placeholder="0400 000 000"
+                        aria-describedby={errors.phone ? 'phone-error' : undefined}
+                      />
+                      {errors.phone && (
+                        <span id="phone-error" className="form-error" role="alert">
+                          {errors.phone}
                         </span>
                       )}
                     </div>

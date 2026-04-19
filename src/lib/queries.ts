@@ -81,7 +81,9 @@ export const WHO_WE_ARE_QUERY = groq`
   *[_type == "whoWeArePage"][0]{
     headline,
     subheadline,
-    companyDescription
+    companyDescription,
+    companyImage { ${IMAGE_FIELDS} },
+    podcastLinks[]{ title, show, url, description }
   }
 `
 

@@ -89,9 +89,6 @@ export default function HomePage() {
             <Link to="/what-we-are" className="btn btn-outline-white" style={{ background: 'white', color: 'var(--navy)' }}>
               See what’s possible with one change
             </Link>
-            <Link to="/contact" className="btn btn-outline-white">
-              Talk to a grower
-            </Link>
           </div>
         </div>
       </section>
@@ -275,26 +272,6 @@ export default function HomePage() {
               )}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Growers voice */}
-      <section className="section navy">
-        <div className="inner" style={{ textAlign: 'center', maxWidth: '760px', margin: '0 auto' }}>
-          <span className="label-tag" style={{ color: 'rgba(255,255,255,0.45)' }}>From the field</span>
-          {/* [PLACEHOLDER — Replace with a real grower quote. First name, location,
-              and crop type adds credibility. A photo of the grower or their farm
-              alongside the quote makes this significantly more powerful.] */}
-          <blockquote style={{
-            fontFamily: 'var(--font-head)', fontSize: 'clamp(1.3rem, 2.5vw, 2rem)',
-            fontStyle: 'italic', color: 'white', lineHeight: 1.45,
-            margin: '1.5rem 0',
-          }}>
-            &ldquo;{data?.settings?.homeQuote ?? "[PLACEHOLDER — A real quote from a real grower. Specific results, in their own words. e.g. 'I cut my input spend by $40 an acre in year one and my corn yield actually went up. I'm not going back.']"}&rdquo;
-          </blockquote>
-          <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.85rem', fontWeight: 600, letterSpacing: '0.05em' }}>
-            {data?.settings?.homeQuoteAuthor ?? '[PLACEHOLDER — Grower name, location, crop type]'}
-          </p>
         </div>
       </section>
 

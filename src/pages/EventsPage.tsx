@@ -7,6 +7,7 @@ import { EVENTS_QUERY } from '@/lib/queries'
 // ── Types ─────────────────────────────────────────────────────────────────────
 interface FormState {
   name: string
+  lastName: string
   phone: string
   email: string
   operation: string
@@ -16,6 +17,7 @@ interface FormState {
 
 interface FormErrors {
   name?: string
+  lastName?: string
   phone?: string
   email?: string
 }
@@ -26,6 +28,7 @@ type InputChangeEvent = ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLT
 
 const INITIAL_FORM: FormState = {
   name: '',
+  lastName: '',
   phone: '',
   email: '',
   operation: '',
@@ -88,6 +91,7 @@ export default function EventsPage() {
         'form-name': 'events',
         'bot-field': '',
         name:        form.name,
+        lastName: form.lastName,
         phone:       form.phone,
         email:       form.email,
         attending:   form.attending,
@@ -215,16 +219,16 @@ export default function EventsPage() {
                     </div>
                   )}
 
-                  {/* Name + Phone */}
+                  {/* Name */}
                   <div className="form-row">
                     <div className="form-group">
                       <label htmlFor="evt-name">
-                        Full Name <span className="required-star">*</span>
+                        First Name <span className="required-star">*</span>
                       </label>
                       <input
                         id="evt-name" type="text"
                         value={form.name} onChange={updateField('name')}
-                        placeholder="Jane Smith"
+                        placeholder="Jane"
                         aria-describedby={errors.name ? 'evt-name-error' : undefined}
                       />
                       {errors.name && (
@@ -233,6 +237,26 @@ export default function EventsPage() {
                         </span>
                       )}
                     </div>
+                    <div className="form-group">
+                      <label htmlFor="evt-last-name">
+                        Last Name <span className="required-star">*</span>
+                      </label>
+                      <input
+                        id="evt-last-name" type="text"
+                        value={form.lastName} onChange={updateField('lastName')}
+                        placeholder="Smith"
+                        aria-describedby={errors.lastName ? 'evt-last-name-error' : undefined}
+                      />
+                      {errors.lastName && (
+                        <span id="evt-last-name-error" className="form-error" role="alert">
+                          {errors.lastName}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Phone + e-mail */}
+                  <div className="form-row">
                     <div className="form-group">
                       <label htmlFor="evt-phone">
                         Phone <span className="required-star">*</span>
@@ -249,24 +273,23 @@ export default function EventsPage() {
                         </span>
                       )}
                     </div>
-                  </div>
 
-                  {/* Email */}
-                  <div className="form-group">
-                    <label htmlFor="evt-email">
-                      Email Address <span className="required-star">*</span>
-                    </label>
-                    <input
-                      id="evt-email" type="email"
-                      value={form.email} onChange={updateField('email')}
-                      placeholder="jane@operation.com"
-                      aria-describedby={errors.email ? 'evt-email-error' : undefined}
-                    />
-                    {errors.email && (
-                      <span id="evt-email-error" className="form-error" role="alert">
-                        {errors.email}
-                      </span>
-                    )}
+                    <div className="form-group">
+                      <label htmlFor="evt-email">
+                        Email Address <span className="required-star">*</span>
+                      </label>
+                      <input
+                        id="evt-email" type="email"
+                        value={form.email} onChange={updateField('email')}
+                        placeholder="jane@operation.com"
+                        aria-describedby={errors.email ? 'evt-email-error' : undefined}
+                      />
+                      {errors.email && (
+                        <span id="evt-email-error" className="form-error" role="alert">
+                          {errors.email}
+                        </span>
+                      )}
+                    </div>
                   </div>
 
                   {/* Number attending */}
