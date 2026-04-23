@@ -188,8 +188,7 @@ export default function EventsPage() {
                   </h3>
                   <p style={{ color: 'var(--grey-500)', fontSize: '0.9rem', lineHeight: 1.6 }}>
                     Thanks, {form.name}. We've got you down for the Smart Blend Field Day.
-                    You'll receive a confirmation email at <strong>{form.email}</strong> shortly,
-                    with a reminder closer to the date.
+                    You'll receive a reminder at <strong>{form.email}</strong> closer to the date.
                   </p>
                 </div>
               ) : (
