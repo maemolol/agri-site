@@ -109,20 +109,6 @@ const FOOTER_COLS = [
       { label: 'Contact Us',  to: '/contact' },
     ],
   },
-  {
-    heading: 'Product',
-    links: [
-      { label: 'Lapazma',           to: '/what-we-are' },
-      { label: 'Safety Data Sheets', to: '/contact' },
-    ],
-  },
-  {
-    heading: 'Explore',
-    links: [
-      { label: 'Markets',  to: '/markets/row-crops' },
-      { label: 'Insights', to: '/insights' },
-    ],
-  },
 ]
 
 interface SiteFooterProps {

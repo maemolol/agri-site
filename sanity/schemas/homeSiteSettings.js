@@ -61,6 +61,34 @@ export const homeSiteSettings = defineType({
                 defineField({ name: 'alt', title: 'Alt Text', type: 'string' }),
             ],
         }),
+        defineField({ name: 'worksHeadline', title: 'How It Works Headline', type: 'string' }),
+        defineField({ name: 'worksSubheadline', title: 'How It Works Subheadline', type: 'text', rows: 2 }),
+        defineField({
+            name: 'worksPillars',
+            title: 'How it Works Actions',
+            type: 'array',
+            of: [
+            {
+                type: 'object',
+                name: 'pillar',
+                fields: [
+                defineField({ name: 'title', title: 'Title', type: 'string', validation: (r) => r.required() }),
+                defineField({ name: 'body', title: 'Body', type: 'text', rows: 3 }),
+                ],
+                preview: { select: { title: 'title' } },
+            },
+            ],
+            validation: (r) => r.max(3),
+        }),
+        defineField({
+            name: 'worksImage',
+            title: 'How It Works Image',
+            type: 'image',
+            options: { hotspot: true },
+            fields: [
+            defineField({ name: 'alt', title: 'Alt Text', type: 'string' }),
+            ],
+        }),
         defineField({
             name: 'applicationHeadline',
             title: 'How To Apply — Headline',

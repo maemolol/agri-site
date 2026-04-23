@@ -84,12 +84,6 @@ export default function HomePage() {
             {data?.settings?.heroSubheadline
               ?? '[PLACEHOLDER — One or two sentences that complete the promise. e.g. "Smart Blend is one integrated system that replaces multiple inputs, rebuilds your soil biology, and gives you measurable results — season after season."]'}
           </p>
-          {/* CTAs — primary action is low-friction ("See how it works"), not a hard sell */}
-          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            <Link to="/what-we-are" className="btn btn-outline-white" style={{ background: 'white', color: 'var(--navy)' }}>
-              See what’s possible with one change
-            </Link>
-          </div>
         </div>
       </section>
 
@@ -145,8 +139,51 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── HOW TO APPLY ─────────────────────────────────────────────────── */}
+      {/* Pillars */}
       <section className="section grey">
+        <div className="inner">
+          <div className="two-col rev">
+            <div>
+              <span className="label-tag">{data?.settings?.worksHeadline ?? "How it works"}</span>
+              <h2 className="section-heading">{data?.settings?.worksSubheadline ?? "Three things happening in a single application."}</h2>
+              <div className="home-pillars-grid">
+                {data?.settings?.worksPillars?.map(p => (
+                  <div key={p.title} style={{
+                    background: 'var(--white)', padding: '2.25rem 2rem',
+                    borderTop: '3px solid var(--teal)',
+                  }}>
+                    <h3 style={{
+                      fontFamily: 'var(--font-head)', fontSize: '1.2rem',
+                      fontWeight: 600, color: 'var(--navy)', marginBottom: '0.75rem',
+                    }}>
+                      {p.title}
+                    </h3>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--grey-700)', lineHeight: 1.7 }}>
+                      {p.body}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="two-col-img" style={{aspectRatio: 'unset'}}>
+              {data?.settings?.worksImage?.url != null ? (
+                <img
+                  src={urlFor(data.settings.worksImage).height(675).fit('max').url()}
+                  alt={data.settings.worksImage.alt ?? data.settings.worksHeadline ?? ''}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              ) : (
+                <div className="photo-placeholder" style={{ background: 'linear-gradient(135deg, #002a14 0%, #1a6b3a 100%)' }}>
+                  🌱
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── HOW TO APPLY ─────────────────────────────────────────────────── */}
+      <section className="section white">
         <div className="inner">
           <div className='two-col rev'>
             {/* Text column */}
@@ -179,7 +216,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Origin story ──────────────────────────────────────────── */}
-      <section className="section white">
+      <section className="section grey">
         <div className="inner">
           <div className="two-col rev">
             <div className="two-col-img">
@@ -214,7 +251,7 @@ export default function HomePage() {
 
       {/* Comparison table */}
       {rows.length > 0 && (
-        <section className="section grey">
+        <section className="section white">
           <div className="inner">
             <span className="label-tag">How we compare</span>
             <h2 className="section-heading">Smart Blend vs the conventional approach</h2>
@@ -243,7 +280,7 @@ export default function HomePage() {
       )}
 
       {/* ── WHAT IS THE PRODUCT ──────────────────────────────────────────── */}
-      <section className="section white">
+      <section className="section grey">
         <div className="inner">
           <div className='two-col'>
             {/* Text column */}

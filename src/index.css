@@ -442,6 +442,9 @@ button { font-family: var(--font-body); cursor: pointer; border: none; backgroun
 
 @media (max-width: 768px) { .pillars-grid { grid-template-columns: 1fr; } }
 
+/* Home pillars */
+.home-pillars-grid { display: grid; grid-template-columns: 1fr; gap: 2px; background: var(--grey-200); margin-top: 3rem; }
+
 /* Ensure nothing overflows the viewport horizontally */
 body { overflow-x: hidden; }
 .inner, .section { overflow-x: hidden; }

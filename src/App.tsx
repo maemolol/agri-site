@@ -5,6 +5,7 @@ import { LoadingState } from '@/components/ui'
 import { useSanity } from '@/hooks/useSanity'
 import { SITE_SETTINGS_QUERY } from '@/lib/queries'
 import type { HomeSiteSettings } from '@/types'
+import ScrollToTop from '@/components/scroll/ScrollToTop'
 
 // ── Lazy pages (each route is its own chunk) ──────────────────────────────────
 const HomePage = lazy(() => import('@/pages/HomePage'))
@@ -28,6 +29,7 @@ function RootLayout() {
 
   return (
     <AppShell footerTagline={settings?.footerTagline}>
+      <ScrollToTop />
       <Suspense fallback={<LoadingState />}>
         <Outlet />
       </Suspense>

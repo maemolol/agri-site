@@ -32,6 +32,10 @@ export interface HomeSiteSettings {
   productSubheadline?: string
   productDescription?: PortableTextBlock[]
   productImage?: SanityImage
+  worksHeadline?: string
+  worksSubheadline?: string
+  worksPillars?: Pillar[]
+  worksImage: SanityImage
   // How to apply
   applicationHeadline?: string
   applicationDescription?: PortableTextBlock[]
@@ -164,7 +168,7 @@ export interface WhatWeArePage {
 
 // ── Homepage composite query result ──────────────────────────────────────────
 export interface HomepageData {
-  settings: Pick<HomeSiteSettings, 'heroHeadline' | 'heroSubheadline' | 'heroStats' | 'productHeadline' | 'productSubheadline' | 'productDescription'| 'productImage' | 'applicationHeadline' | 'applicationDescription' | 'applicationImage' | 'originHeading' | 'originBody' | 'originImage' | 'resultsHeadline' | 'resultsDescription' | 'resultsImage' | 'homeQuote' | 'homeQuoteAuthor'>
+  settings: Pick<HomeSiteSettings, 'heroHeadline' | 'heroSubheadline' | 'heroStats' | 'productHeadline' | 'productSubheadline' | 'productDescription'| 'productImage' | 'worksHeadline' | 'worksSubheadline' | 'worksPillars' | 'worksImage' | 'applicationHeadline' | 'applicationDescription' | 'applicationImage' | 'originHeading' | 'originBody' | 'originImage' | 'resultsHeadline' | 'resultsDescription' | 'resultsImage' | 'homeQuote' | 'homeQuoteAuthor'>
   markets: Pick<Market, '_id' | 'name' | 'slug' | 'displayNumber' | 'emoji' | 'overview'>[]
   comparison: ComparisonTable | null
   insights: Pick<Insight, '_id' | 'title' | 'slug' | 'tag' | 'excerpt' | 'publishedAt'>[]

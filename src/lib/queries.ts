@@ -39,6 +39,10 @@ export const SITE_SETTINGS_QUERY = groq`
     productSubheadline,
     productDescription,
     productImage { ${IMAGE_FIELDS} },
+    worksHeadline,
+    worksSubheadline,
+    worksPillars[]{ title, body },
+    worksImage { ${IMAGE_FIELDS} }
     applicationHeadline,
     applicationDescription,
     applicationImage { ${IMAGE_FIELDS} },
@@ -175,7 +179,7 @@ export const INSIGHT_QUERY = groq`
 export const HOMEPAGE_QUERY = groq`
   {
     "settings": *[_type == "homeSiteSettings"][0]{
-      heroHeadline, heroSubheadline, heroStats[]{ number, unit, label }, productHeadline, productSubheadline, productDescription, productImage { ${IMAGE_FIELDS} }, applicationHeadline, applicationDescription, applicationImage { ${IMAGE_FIELDS} }, originHeading, originBody, originImage { ${IMAGE_FIELDS} }, resultsHeadline, resultsDescription, resultsImage { ${IMAGE_FIELDS} }, homeQuote, homeQuoteAuthor
+      heroHeadline, heroSubheadline, heroStats[]{ number, unit, label }, productHeadline, productSubheadline, productDescription, productImage { ${IMAGE_FIELDS} }, worksHeadline, worksSubheadline, worksPillars, worksImage { ${IMAGE_FIELDS} }, applicationHeadline, applicationDescription, applicationImage { ${IMAGE_FIELDS} }, originHeading, originBody, originImage { ${IMAGE_FIELDS} }, resultsHeadline, resultsDescription, resultsImage { ${IMAGE_FIELDS} }, homeQuote, homeQuoteAuthor
     },
     "markets": *[_type == "market"] | order(order asc){
       _id, name, "slug": slug.current, displayNumber, emoji, overview
