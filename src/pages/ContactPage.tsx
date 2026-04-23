@@ -293,7 +293,7 @@ export default function ContactPage() {
                       <input
                         id="phone" type="tel"
                         value={form.phone} onChange={updateField('phone')}
-                        placeholder="0400 000 000"
+                        placeholder="000 000 0000"
                         aria-describedby={errors.phone ? 'phone-error' : undefined}
                       />
                       {errors.phone && (

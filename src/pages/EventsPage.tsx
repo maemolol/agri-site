@@ -263,7 +263,7 @@ export default function EventsPage() {
                       <input
                         id="evt-phone" type="tel"
                         value={form.phone} onChange={updateField('phone')}
-                        placeholder="0400 000 000"
+                        placeholder="000 000 0000"
                         aria-describedby={errors.phone ? 'evt-phone-error' : undefined}
                       />
                       {errors.phone && (
