@@ -19,6 +19,15 @@ export interface HeroStat {
   label: string
 }
 
+export interface NewsItem {
+  image?: SanityImage
+  title: string
+  source?: string
+  description?: string
+  url: string
+  ctaText?: string
+}
+
 export interface HomeSiteSettings {
   siteTitle: string
   tagline?: string
@@ -46,6 +55,7 @@ export interface HomeSiteSettings {
   resultsHeadline?: string
   resultsDescription?: PortableTextBlock[]
   resultsImage: SanityImage
+  newsItems?: NewsItem[]
   homeQuote: string
   homeQuoteAuthor: string
   footerTagline?: string
@@ -168,7 +178,7 @@ export interface WhatWeArePage {
 
 // ── Homepage composite query result ──────────────────────────────────────────
 export interface HomepageData {
-  settings: Pick<HomeSiteSettings, 'heroHeadline' | 'heroSubheadline' | 'heroStats' | 'productHeadline' | 'productSubheadline' | 'productDescription'| 'productImage' | 'worksHeadline' | 'worksSubheadline' | 'worksPillars' | 'worksImage' | 'applicationHeadline' | 'applicationDescription' | 'applicationImage' | 'originHeading' | 'originBody' | 'originImage' | 'resultsHeadline' | 'resultsDescription' | 'resultsImage' | 'homeQuote' | 'homeQuoteAuthor'>
+  settings: Pick<HomeSiteSettings, 'heroHeadline' | 'heroSubheadline' | 'heroStats' | 'productHeadline' | 'productSubheadline' | 'productDescription'| 'productImage' | 'worksHeadline' | 'worksSubheadline' | 'worksPillars' | 'worksImage' | 'applicationHeadline' | 'applicationDescription' | 'applicationImage' | 'originHeading' | 'originBody' | 'originImage' | 'resultsHeadline' | 'resultsDescription' | 'resultsImage' | 'newsItems' | 'homeQuote' | 'homeQuoteAuthor'>
   markets: Pick<Market, '_id' | 'name' | 'slug' | 'displayNumber' | 'emoji' | 'overview'>[]
   comparison: ComparisonTable | null
   insights: Pick<Insight, '_id' | 'title' | 'slug' | 'tag' | 'excerpt' | 'publishedAt'>[]

@@ -146,6 +146,60 @@ export const homeSiteSettings = defineType({
             ],
         }),
         defineField({
+            name: 'newsItems',
+            title: 'In The News',
+            type: 'array',
+            description: 'Articles and links highlighting Smart Blend in external media',
+            of: [
+            {
+                type: 'object',
+                name: 'newsItem',
+                fields: [
+                defineField({
+                    name: 'image',
+                    title: 'Image',
+                    type: 'image',
+                    options: { hotspot: true },
+                    fields: [defineField({ name: 'alt', title: 'Alt Text', type: 'string' })],
+                }),
+                defineField({
+                    name: 'title',
+                    title: 'Article Title',
+                    type: 'string',
+                    validation: (r) => r.required(),
+                }),
+                defineField({
+                    name: 'source',
+                    title: 'Publication / Source',
+                    type: 'string',
+                    description: 'e.g. "The Weekly Times", "ABC Rural"',
+                }),
+                defineField({
+                    name: 'description',
+                    title: 'Description',
+                    type: 'text',
+                    rows: 3,
+                }),
+                defineField({
+                    name: 'url',
+                    title: 'Link URL',
+                    type: 'url',
+                    validation: (r) => r.required(),
+                }),
+                defineField({
+                    name: 'ctaText',
+                    title: 'CTA Button Text',
+                    type: 'string',
+                    description: 'Defaults to "Read the article" if left blank',
+                }),
+                ],
+                preview: {
+                select: { title: 'title', subtitle: 'source', media: 'image' },
+                },
+            },
+            ],
+        }),
+        defineField({
             name: 'homeQuote',
             title: 'Testimonial quote',
             type: 'string'

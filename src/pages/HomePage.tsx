@@ -312,6 +312,86 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── IN THE NEWS ──────────────────────────────────────────────────── */}
+      {(data?.settings?.newsItems ?? []).length > 0 && (
+        <section className="section white">
+          <div className="inner">
+            <span className="label-tag">In the news</span>
+            <h2 className="section-heading">Smart Blend Technology in the media</h2>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '2rem',
+              marginTop: '2.5rem',
+            }}>
+              {data?.settings?.newsItems?.map((item) => (
+                <div
+                  key={item.url}
+                  style={{
+                    border: '1px solid var(--grey-200)',
+                    borderTop: '3px solid var(--red)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                  }}
+                >
+                  {/* Image */}
+                  {item.image?.url != null && (
+                    <img
+                      src={urlFor(item.image).width(600).height(340).fit('crop').url()}
+                      alt={item.image.alt ?? item.title}
+                      style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }}
+                    />
+                  )}
+
+                  <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                    {/* Source label */}
+                    {item.source != null && (
+                      <span style={{
+                        fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase',
+                        letterSpacing: '0.1em', color: 'var(--teal)', marginBottom: '0.5rem',
+                      }}>
+                        {item.source}
+                      </span>
+                    )}
+
+                    {/* Title */}
+                    <h3 style={{
+                      fontFamily: 'var(--font-head)', fontSize: '1.15rem',
+                      fontWeight: 600, color: 'var(--navy)',
+                      lineHeight: 1.35, marginBottom: '0.75rem',
+                    }}>
+                      {item.title}
+                    </h3>
+
+                    {/* Description */}
+                    {item.description != null && (
+                      <p style={{
+                        fontSize: '0.875rem', color: 'var(--grey-700)',
+                        lineHeight: 1.65, marginBottom: '1.25rem', flex: 1,
+                      }}>
+                        {item.description}
+                      </p>
+                    )}
+
+                    {/* CTA */}
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-outline-navy"
+                      style={{ alignSelf: 'flex-start', marginTop: 'auto' }}
+                    >
+                      {item.ctaText ?? 'Read the article'} →
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Final Call-to-Action */}
       <CTABand
         title="Ready to change the math on your operation?"
