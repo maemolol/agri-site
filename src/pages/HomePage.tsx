@@ -60,14 +60,6 @@ export default function HomePage() {
           maxWidth: 'var(--max-w)', margin: '0 auto',
           padding: '6rem var(--pad-x) 5rem', width: '100%',
         }}>
-          {/* Eyebrow — identity/movement tagline */}
-          <span style={{
-            display: 'inline-block', background: 'var(--teal)', color: 'white',
-            fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.12em',
-            textTransform: 'uppercase', padding: '0.35rem 1rem', marginBottom: '1.75rem',
-          }}>
-            Recovering Fertaholic? You're in the right place.
-          </span>
           {/* Main headline — customer pain + promise, not product description */}
           <h1 style={{
             fontFamily: 'var(--font-head)', fontSize: 'clamp(2.2rem, 5vw, 4.2rem)',
