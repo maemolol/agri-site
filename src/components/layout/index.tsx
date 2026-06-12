@@ -21,7 +21,7 @@ export function TopBar() {
 const PRIMARY_NAV = [
   { label: 'Home', to: '/' },
   { label: 'Who We Are', to: '/who-we-are' },
-  { label: 'Field Day', to: '/field-day' },
+  { label: 'Field Day', to: '/events' },
   { label: 'Contact Us', to: '/contact' },
   { label: 'Order', to: '/orders' }
 ]
@@ -105,9 +105,9 @@ const FOOTER_COLS = [
   {
     heading: 'Company',
     links: [
-      { label: 'Who We Are',  to: '/who-we-are' },
-      { label: 'Field Day',      to: '/field-day' },
-      { label: 'Contact Us',  to: '/contact' },
+      { label: 'Who We Are', to: '/who-we-are' },
+      { label: 'Field Day', to: '/events' },
+      { label: 'Contact Us', to: '/contact' },
     ],
   },
 ]

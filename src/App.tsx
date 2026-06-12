@@ -76,7 +76,7 @@ const router = createBrowserRouter([
       { path: 'insights', element: <InsightsPage /> },
       { path: 'insights/:slug', element: <InsightDetailPage /> },
       { path: 'contact', element: <ContactPage /> },
-      { path: 'field-day', element: <EventsPage /> },
+      { path: 'events', element: <EventsPage /> },
       { path: 'orders', element: <OrdersPage />},
       { path: '*', element: <NotFoundPage /> },
     ],
