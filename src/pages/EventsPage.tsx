@@ -230,7 +230,7 @@ export default function EventsPage() {
                 marginTop: '1.5rem', fontSize: '0.8rem',
                 color: 'var(--grey-500)', lineHeight: 1.6,
               }}>
-                Questions? Call or text{' '}
+                
                 <a href={`tel:${PHONE.replace(/\s/g, '')}`} style={{ color: 'var(--teal)', fontWeight: 600 }}>
                   {PHONE}
                 </a>
