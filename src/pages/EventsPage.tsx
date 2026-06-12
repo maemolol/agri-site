@@ -323,7 +323,7 @@ export default function EventsPage() {
                     display: 'flex', gap: '0.85rem', alignItems: 'flex-start',
                     fontSize: '0.925rem', color: 'rgba(255,255,255,0.75)', lineHeight: 1.65,
                   }}>
-                    <span style={{ color: 'var(--teal)', flexShrink: 0, marginTop: '2px' }}>✓</span>
+                    <span style={{ color: 'var(--white)', flexShrink: 0, marginTop: '2px' }}>✓</span>
                     {item}
                   </li>
                 ))}
@@ -358,7 +358,7 @@ export default function EventsPage() {
                   <div>
                     <div style={{
                       fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase',
-                      letterSpacing: '0.1em', color: 'var(--teal)', marginBottom: '0.25rem',
+                      letterSpacing: '0.1em', color: 'var(--white)', marginBottom: '0.25rem',
                     }}>
                       {d.label}
                     </div>
