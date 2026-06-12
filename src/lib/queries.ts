@@ -106,7 +106,9 @@ export const EVENTS_QUERY = groq`
     eventDate,
     eventTime,
     eventLocation,
-    eventCapacity
+    eventCapacity,
+    controlPlotImage { ${IMAGE_FIELDS} },
+    lipasmaPlotImage { ${IMAGE_FIELDS} }
   }
 `
 

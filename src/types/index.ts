@@ -97,6 +97,8 @@ export interface EventsPage {
   eventTime?: string
   eventLocation?: string
   eventCapacity?: string
+  controlPlotImage?: SanityImage
+  lipasmaPlotImage?: SanityImage
 }
 
 // ── Market ────────────────────────────────────────────────────────────────────

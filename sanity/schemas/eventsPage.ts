@@ -35,6 +35,24 @@ export const eventsPage = defineType({
       title: 'Event capacity',
       type: 'string',
     }),
+    defineField({
+      name: 'controlPlotImage',
+      title: 'Control Plot Image',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        defineField({ name: 'alt', title: 'Alt Text', type: 'string' }),
+      ],
+    }),
+    defineField({
+      name: 'lipasmaPlotImage',
+      title: 'Lípasma Plot Image',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        defineField({ name: 'alt', title: 'Alt Text', type: 'string' }),
+      ],
+    }),
   ],
   preview: {
     prepare: () => ({ title: 'Events Page' }),

@@ -1,4 +1,16 @@
+import { useSanity } from '@/hooks/useSanity'
+import { EventsPage as TEventsPage } from '@/types'
+import { EVENTS_QUERY } from '@/lib/queries'
+import imageUrlBuilder from '@sanity/image-url'
+import { client } from "../lib/sanity.client"
+import { SanityImageSource } from '@sanity/image-url/lib/types/types'
+
+const builder = imageUrlBuilder(client)
 const PHONE = "+1 555 555 5555"
+
+function urlFor(source: SanityImageSource) {
+  return builder.image(source)
+}
 
 function HubSpotForm() {
   return (
@@ -62,6 +74,17 @@ const saveSeatBtn: React.CSSProperties = {
 
 // ── Component ─────────────────────────────────────────────────────────────────
 export default function EventsPage() {
+  const { data, loading, error } = useSanity<TEventsPage>(EVENTS_QUERY)
+
+  const EVENT = {
+    name: data?.eventName ?? '[PLACEHOLDER — e.g. "Smart Blend Field Day 2025"]',
+    date: data?.eventDate ?? '[PLACEHOLDER — e.g. "Saturday 14 June 2025"]',
+    time: data?.eventTime ?? '[PLACEHOLDER — e.g. "9:00 AM – 3:00 PM"]',
+    location: data?.eventLocation ?? '[PLACEHOLDER — e.g. "Smith Family Farm, 123 Rural Road, Toowoomba QLD"]',
+    details:  data?.eventDescription ?? '[PLACEHOLDER — A paragraph describing what attendees will see and do. Live soil demonstrations, trial result presentations, Q&A with Tom, lunch provided, etc.]',
+    capacity: data?.eventCapacity ?? '[PLACEHOLDER — e.g. "Limited to 120 growers"]',
+  }
+
   return (
     <div className="page-fade">
 
@@ -275,24 +298,44 @@ export default function EventsPage() {
               Suggested layout: two images side by side with a caption below each.
               Replace these divs with <img> tags once you have the files.] */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-            {['Control plot', 'Lípasma plot'].map((label) => (
-              <div key={label}>
-                <div style={{
-                  aspectRatio: '16/9', background: 'var(--navy)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                }}>
-                  <p style={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.85rem' }}>
-                    [PLACEHOLDER — {label} aerial photo]
-                  </p>
+            <div key="control-plot">
+              {data?.controlPlotImage?.url != null ? (
+                <img
+                  src={urlFor(data.controlPlotImage).height(675).fit('max').url()}
+                  alt={data.controlPlotImage.alt ?? 'Control plot aerial image'}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              ) : (
+                <div className="photo-placeholder" style={{ background: 'linear-gradient(135deg, #002a14 0%, #1a6b3a 100%)' }}>
+                  🌱
                 </div>
-                <p style={{
-                  fontSize: '0.78rem', color: 'var(--grey-500)',
-                  textAlign: 'center', marginTop: '0.5rem', fontStyle: 'italic',
-                }}>
-                  {label}
-                </p>
-              </div>
-            ))}
+              )}
+              <p style={{
+                fontSize: '0.78rem', color: 'var(--grey-500)',
+                textAlign: 'center', marginTop: '0.5rem', fontStyle: 'italic',
+              }}>
+                Control plot
+              </p>
+            </div>
+            <div key="lipasma-plot">
+              {data?.lipasmaPlotImage?.url != null ? (
+                <img
+                  src={urlFor(data.lipasmaPlotImage).height(675).fit('max').url()}
+                  alt={data.lipasmaPlotImage.alt ?? 'Control plot aerial image'}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              ) : (
+                <div className="photo-placeholder" style={{ background: 'linear-gradient(135deg, #002a14 0%, #1a6b3a 100%)' }}>
+                  🌱
+                </div>
+              )}
+              <p style={{
+                fontSize: '0.78rem', color: 'var(--grey-500)',
+                textAlign: 'center', marginTop: '0.5rem', fontStyle: 'italic',
+              }}>
+                Lípasma plot
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -344,9 +387,9 @@ export default function EventsPage() {
                 Details
               </h3>
               {[
-                { icon: '📅', label: 'Date',     value: 'Monday, June 29th 2026' },
-                { icon: '🕐', label: 'Time',     value: '11:00 a.m. – 3:00 p.m.' },
-                { icon: '📍', label: 'Location', value: '6325 Shepherd Road, Havre Montana\nHosted by Baltrusch Land & Cattle' },
+                { icon: '📅', label: 'Date',     value: EVENT.name },
+                { icon: '🕐', label: 'Time',     value: EVENT.time },
+                { icon: '📍', label: 'Location', value: EVENT.location },
                 { icon: '🍽️', label: 'Lunch',    value: 'Provided' },
               ].map((d) => (
                 <div key={d.label} style={{
