@@ -1,64 +1,19 @@
-import { useState, type ChangeEvent, type FormEvent } from 'react'
-
-// ── HubSpot config ────────────────────────────────────────────────────────────
-// Uses its own form ID so orders land in a separate HubSpot inbox.
-// Add to .env.local:
-//   VITE_HUBSPOT_ORDERS_PORTAL_ID=your_portal_id  (likely same as events)
-//   VITE_HUBSPOT_ORDERS_FORM_ID=your_orders_form_id
-// Configure the HubSpot form to include: First Name, Last Name, Email,
-// Phone, Farm/Operation, State/Province, Number of Totes, and any notes.
-import { useEffect, useRef } from 'react'
-
-const PORTAL_ID = import.meta.env.VITE_HUBSPOT_ORDERS_PORTAL_ID ?? import.meta.env.VITE_HUBSPOT_PORTAL_ID ?? ''
-const FORM_ID   = import.meta.env.VITE_HUBSPOT_ORDERS_FORM_ID   ?? ''
+import { useState, type ChangeEvent } from 'react'
 
 const ACRES_PER_TOTE = 500
 
+// ── HubSpot order form ────────────────────────────────────────────────────────
+// Update data-form-id to your orders form ID from the HubSpot embed code.
+// The script tag in index.html loads the HubSpot embed script.
 function HubSpotOrderForm() {
-  const ref = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (!PORTAL_ID || !FORM_ID) return
-
-    const scriptId = 'hubspot-forms-script'
-    if (!document.getElementById(scriptId)) {
-      const script = document.createElement('script')
-      script.id    = scriptId
-      script.src   = '//js.hsforms.net/forms/embed/v2.js'
-      script.async = true
-      script.onload = createForm
-      document.head.appendChild(script)
-    } else {
-      createForm()
-    }
-
-    function createForm() {
-      if (!(window as any).hbspt) return
-      ;(window as any).hbspt.forms.create({
-        portalId:    PORTAL_ID,
-        formId:      FORM_ID,
-        target:      '#hubspot-order-form-container',
-        cssRequired: '',
-        css: '',
-      })
-    }
-  }, [])
-
-  if (!PORTAL_ID || !FORM_ID) {
-    return (
-      <div style={{
-        padding: '2rem', background: 'var(--grey-50)',
-        border: '1px dashed var(--grey-300)',
-        color: 'var(--grey-500)', fontSize: '0.875rem', lineHeight: 1.6,
-      }}>
-        <strong style={{ color: 'var(--navy)' }}>HubSpot order form not configured.</strong><br />
-        Add <code>VITE_HUBSPOT_ORDERS_PORTAL_ID</code> and{' '}
-        <code>VITE_HUBSPOT_ORDERS_FORM_ID</code> to your <code>.env.local</code>.
-      </div>
-    )
-  }
-
-  return <div id="hubspot-order-form-container" ref={ref} />
+  return (
+    <div
+      className="hs-form-frame"
+      data-region="na2"
+      data-form-id="[PLACEHOLDER — your orders form ID]"
+      data-portal-id="246311807"
+    />
+  )
 }
 
 // ── Tote calculator ───────────────────────────────────────────────────────────

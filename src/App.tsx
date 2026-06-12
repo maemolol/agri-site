@@ -17,6 +17,7 @@ const InsightsPage = lazy(() => import('@/pages/InsightsPage'))
 const InsightDetailPage = lazy(() => import('@/pages/InsightDetailPage'))
 const EventsPage = lazy(() => import('@/pages/EventsPage'))
 const ContactPage = lazy(() => import('@/pages/ContactPage'))
+const OrdersPage = lazy(() => import('@/pages/OrdersPage'))
 
 // Studio is a ~2MB chunk — only loads when the user visits /studio
 const StudioPage = lazy(() => import('@/pages/StudioPage'))
@@ -67,16 +68,17 @@ const router = createBrowserRouter([
     path: '/',
     element: <RootLayout />,
     children: [
-      { index: true,             element: <HomePage /> },
-      { path: 'what-we-are',    element: <WhatWeArePage /> },
-      { path: 'who-we-are',     element: <WhoWeArePage /> },
-      { path: 'team/:slug',     element: <TeamMemberPage /> },
-      { path: 'markets/:slug',  element: <MarketPage /> },
-      { path: 'insights',       element: <InsightsPage /> },
+      { index: true, element: <HomePage /> },
+      { path: 'what-we-are', element: <WhatWeArePage /> },
+      { path: 'who-we-are', element: <WhoWeArePage /> },
+      { path: 'team/:slug', element: <TeamMemberPage /> },
+      { path: 'markets/:slug', element: <MarketPage /> },
+      { path: 'insights', element: <InsightsPage /> },
       { path: 'insights/:slug', element: <InsightDetailPage /> },
-      { path: 'contact',        element: <ContactPage /> },
-      { path: 'field-day',         element: <EventsPage /> },
-      { path: '*',              element: <NotFoundPage /> },
+      { path: 'contact', element: <ContactPage /> },
+      { path: 'field-day', element: <EventsPage /> },
+      { path: 'orders', element: <OrdersPage />},
+      { path: '*', element: <NotFoundPage /> },
     ],
   },
 ])
