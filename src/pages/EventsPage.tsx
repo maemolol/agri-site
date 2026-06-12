@@ -231,10 +231,7 @@ export default function EventsPage() {
                 color: 'var(--grey-500)', lineHeight: 1.6,
               }}>
                 
-                <a href={`tel:${PHONE.replace(/\s/g, '')}`} style={{ color: 'var(--teal)', fontWeight: 600 }}>
-                  {PHONE}
-                </a>
-                . We'll pick up.
+           
               </p>
             </div>
           </div>
