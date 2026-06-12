@@ -19,10 +19,11 @@ export function TopBar() {
 // ── SiteNav ───────────────────────────────────────────────────────────────────
 // Primary nav — shown in the main navigation bar
 const PRIMARY_NAV = [
-  { label: 'Home',        to: '/' },
-  { label: 'Who We Are',  to: '/who-we-are' },
-  { label: 'Field Day',      to: '/field-day' },
-  { label: 'Contact Us',  to: '/contact' },
+  { label: 'Home', to: '/' },
+  { label: 'Who We Are', to: '/who-we-are' },
+  { label: 'Field Day', to: '/field-day' },
+  { label: 'Contact Us', to: '/contact' },
+  { label: 'Order', to: '/orders' }
 ]
 
 // Secondary nav — shown as smaller links in the topbar, full links in footer
