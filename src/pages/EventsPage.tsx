@@ -145,7 +145,7 @@ export default function EventsPage() {
       {/* ══════════════════════════════════════════════════════════════════════
           SECTION 2 — REGISTRATION
       ══════════════════════════════════════════════════════════════════════ */}
-      <section id="register" style={{ background: 'var(--grey-50)', padding: 'clamp(4rem,7vw,6rem) var(--pad-x)' }}>
+      <section style={{ background: 'var(--grey-50)', padding: 'clamp(4rem,7vw,6rem) var(--pad-x)' }}>
         <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
           <div className="contact-layout">
 
@@ -197,7 +197,7 @@ export default function EventsPage() {
             </div>
 
             {/* Right — HubSpot form */}
-            <div style={{
+            <div id="register" style={{
               background: 'var(--white)',
               border: '1px solid var(--grey-200)',
               padding: '2.5rem',
