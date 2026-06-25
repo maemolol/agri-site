@@ -18,6 +18,7 @@ const InsightDetailPage = lazy(() => import('@/pages/InsightDetailPage'))
 const EventsPage = lazy(() => import('@/pages/EventsPage'))
 const ContactPage = lazy(() => import('@/pages/ContactPage'))
 const OrdersPage = lazy(() => import('@/pages/OrdersPage'))
+const PreCommitmentPage = lazy(() => import('@/pages/PreCommitmentPage'))
 
 // Studio is a ~2MB chunk — only loads when the user visits /studio
 const StudioPage = lazy(() => import('@/pages/StudioPage'))
@@ -78,6 +79,7 @@ const router = createBrowserRouter([
       { path: 'contact', element: <ContactPage /> },
       { path: 'events', element: <EventsPage /> },
       { path: 'orders', element: <OrdersPage />},
+      { path: 'commitment-2027', element: <PreCommitmentPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
