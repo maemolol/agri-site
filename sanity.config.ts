@@ -3,7 +3,7 @@ import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { schemaTypes } from './sanity/schemas'
 
-const projectId = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_SANITY_PROJECT_ID) || ''
+const projectId = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_SANITY_PROJECT_ID) || 'f1lku4u2'
 const dataset = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_SANITY_DATASET) || 'production'
 
 if (!projectId && import.meta.env.DEV) {

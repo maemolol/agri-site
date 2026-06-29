@@ -2,7 +2,7 @@ import { useRef, useEffect } from 'react'
 import type { PrecommitmentPage as TPrecommitmentPage } from '@/types'
 import { PRECOMMITMENT_QUERY } from '@/lib/queries'
 import { useSanity } from '@/hooks/useSanity'
-import { RichText } from '@/components/ui'
+import { ErrorState, LoadingState, RichText } from '@/components/ui'
 
 const PORTAL_ID   = '246311807'
 const FORM_ID     = '02083a29-7f3b-4eb0-81d8-64729ab5c505'
@@ -20,6 +20,9 @@ function HubSpotForm() {
 
 export default function PreCommitmentPage() {
   const { data, loading, error } = useSanity<TPrecommitmentPage>(PRECOMMITMENT_QUERY)
+
+  if (loading) return <LoadingState />
+  if (error)   return <ErrorState message="Failed to load page content." />
 
   return (
     <div className="page-fade">

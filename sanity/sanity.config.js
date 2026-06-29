@@ -2,7 +2,7 @@ import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './schemas';
-const projectId = import.meta.env.VITE_SANITY_PROJECT_ID;
+const projectId = import.meta.env.VITE_SANITY_PROJECT_ID ?? "f1lku4u2";
 const dataset = import.meta.env.VITE_SANITY_DATASET ?? 'production';
 if (!projectId && import.meta.env.DEV) {
     console.warn('[Smart Blend Studio] VITE_SANITY_PROJECT_ID is not set.\n' +
