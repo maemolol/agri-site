@@ -1,4 +1,8 @@
 import { useRef, useEffect } from 'react'
+import type { PrecommitmentPage as TPrecommitmentPage } from '@/types'
+import { PRECOMMITMENT_QUERY } from '@/lib/queries'
+import { useSanity } from '@/hooks/useSanity'
+import { RichText } from '@/components/ui'
 
 const PORTAL_ID   = '246311807'
 const FORM_ID     = '02083a29-7f3b-4eb0-81d8-64729ab5c505'
@@ -15,6 +19,8 @@ function HubSpotForm() {
 }
 
 export default function PreCommitmentPage() {
+  const { data, loading, error } = useSanity<TPrecommitmentPage>(PRECOMMITMENT_QUERY)
+
   return (
     <div className="page-fade">
 
@@ -28,8 +34,7 @@ export default function PreCommitmentPage() {
             2027 Lípasma Commitment
           </h1>
           <p className="body-copy light" style={{ maxWidth: '540px', marginTop: '0.75rem' }}>
-            Secure your allocation for the 2027 season. Complete the form below
-            and we'll be in touch to confirm your commitment and discuss delivery.
+            {data?.pageSubheading ?? "Secure your allocation for the 2027 season. Complete the form below and we'll be in touch to confirm your commitment and discuss delivery."}
           </p>
         </div>
       </div>
@@ -44,16 +49,15 @@ export default function PreCommitmentPage() {
                 fontFamily: 'var(--font-head)', fontSize: '1.6rem',
                 fontWeight: 600, color: 'var(--navy)', marginBottom: '1rem',
               }}>
-                Why commit early?
+                {data?.subheader ?? "Why commit early?"}
               </h2>
-              <p className="body-copy" style={{ marginBottom: '0.85rem' }}>
-                {/* [PLACEHOLDER — e.g. reasons to commit early: locked pricing,
-                    guaranteed allocation, early delivery scheduling, etc.] */}
-                [PLACEHOLDER — Explain the benefits of committing early for the 2027 season.]
-              </p>
-              <p className="body-copy" style={{ marginBottom: '1.75rem' }}>
-                [PLACEHOLDER — Any additional context, pricing notes, or what happens after they submit.]
-              </p>
+              
+              {/* [PLACEHOLDER — e.g. reasons to commit early: locked pricing,
+                guaranteed allocation, early delivery scheduling, etc.] */}
+              {data?.bodyCopy != null
+                ? <RichText value={data.bodyCopy} />
+                : <p className="body-copy" style={{ marginBottom: '0.85rem' }}>[PLACEHOLDER — Explain the benefits of committing early for the 2027 season.]</p>
+              }
 
               <div style={{
                 background: 'var(--white)', padding: '1.5rem',

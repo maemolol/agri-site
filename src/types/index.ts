@@ -101,6 +101,12 @@ export interface EventsPage {
   lipasmaPlotImage?: SanityImage
 }
 
+export interface PrecommitmentPage {
+  pageSubheading?: string
+  subheader?: string
+  bodyCopy?: PortableTextBlock[]
+}
+
 // ── Market ────────────────────────────────────────────────────────────────────
 export interface Market {
   _id: string

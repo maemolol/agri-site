@@ -59,6 +59,11 @@ export default defineConfig({
               .title('Events Page')
               .id('eventsPage')
               .child(S.document().schemaType('eventsPage').documentId('eventsPage')),
+            
+            S.listItem()
+              .title('Pre-commitment Page')
+              .id('precommitmentPage')
+              .child(S.document().schemaType('precommitmentPage').documentId('precommitmentPage')),
 
             S.divider(),
 

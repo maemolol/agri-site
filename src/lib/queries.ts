@@ -112,6 +112,14 @@ export const EVENTS_QUERY = groq`
   }
 `
 
+export const PRECOMMITMENT_QUERY = groq`
+  *[_type == "precommitmentPage"][0]{
+    pageSubheading,
+    subheader,
+    bodyCopy
+  }
+`
+
 // ── Collections ──────────────────────────────────────────────────────────────
 
 export const ALL_TEAM_QUERY = groq`
