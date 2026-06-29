@@ -13,7 +13,7 @@ if (!projectId && import.meta.env.DEV) {
   )
 }
 
-const SINGLETON_TYPES = new Set(['homeSiteSettings', 'comparisonTable', 'whatWeArePage'])
+const SINGLETON_TYPES = new Set(['homeSiteSettings', 'comparisonTable', 'whatWeArePage', 'whoWeArePage', 'precommitmentPage', 'eventsPage'])
 
 export default defineConfig({
   name: 'smartblend',

@@ -21,7 +21,6 @@ export const precommitmentPage = defineType({
             name: 'bodyCopy',
             title: 'Body Copy',
             type: 'text',
-            rows: 2,
             validation: (r) => r.required(),
         }),
     ],

@@ -6,6 +6,8 @@ import { insight } from './insight';
 import { whatWeArePage } from './whatWeArePage';
 import { whoWeArePage } from './whoWeArePage';
 import { eventsPage } from './eventsPage';
+import { precommitmentPage } from './precommitmentPage';
+
 export const schemaTypes = [
     // Singletons
     homeSiteSettings,
@@ -13,6 +15,7 @@ export const schemaTypes = [
     whatWeArePage,
     whoWeArePage,
     eventsPage,
+    precommitmentPage,
     // Collections
     teamMember,
     market,
