@@ -20,7 +20,8 @@ export const precommitmentPage = defineType({
         defineField({
             name: 'bodyCopy',
             title: 'Body Copy',
-            type: 'text',
+            type: 'array',
+            of: [{ type: 'block' }],
             validation: (r) => r.required(),
         }),
     ],

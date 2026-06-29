@@ -57,10 +57,12 @@ export default function PreCommitmentPage() {
               
               {/* [PLACEHOLDER — e.g. reasons to commit early: locked pricing,
                 guaranteed allocation, early delivery scheduling, etc.] */}
-              {data?.bodyCopy != null
-                ? <RichText value={data.bodyCopy} />
-                : <p className="body-copy" style={{ marginBottom: '0.85rem' }}>[PLACEHOLDER — Explain the benefits of committing early for the 2027 season.]</p>
-              }
+              <div style={{ marginBottom: '0.85rem' }}>
+                {data?.bodyCopy != null
+                  ? <RichText value={data.bodyCopy} />
+                  : <p className="body-copy">[PLACEHOLDER — Explain the benefits of committing early for the 2027 season.]</p>
+                }
+              </div>
 
               <div style={{
                 background: 'var(--white)', padding: '1.5rem',
