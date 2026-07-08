@@ -46,7 +46,7 @@ const AGENDA = [
   'Walk the fields. See how Lípasma has performed on wheat and alfalfa, in real conditions, in real Montana soil.',
   'Federal Regenerative Rebate update. Hear what the rebate could mean for your operation.',
   'Open Q&A. No scripted answers. No pressure.',
-  'Lunch on us. Hosted at Baltrusch Land & Cattle.',
+  'Lunch on us.',
 ]
 
 const DOUBTS = [
@@ -119,7 +119,7 @@ export default function EventsPage() {
           width: '100%',
         }}>
           <span style={{ ...sectionLabel, color: 'rgba(255,255,255,0.5)' }}>
-            Monday, June 29th · Havre, Montana
+            {data?.eventDate} · {data?.eventLocation}
           </span>
           <h1 style={{
             fontFamily: 'var(--font-head)',
@@ -134,7 +134,7 @@ export default function EventsPage() {
             fontSize: '1.2rem', color: 'rgba(255,255,255,0.8)',
             maxWidth: '540px', lineHeight: 1.7, marginBottom: '2.5rem',
           }}>
-            Come see how your neighboring farms are doing it. Monday, June 29th in Havre.
+            Come see how your neighboring farms are doing it. {data?.eventDate} in {data?.eventLocation}.
           </p>
           <a href="#register" style={saveSeatBtn}>
             Save My Seat ↓
@@ -384,10 +384,12 @@ export default function EventsPage() {
                 Details
               </h3>
               {[
-                { icon: '📅', label: 'Date',     value: EVENT.name },
-                { icon: '🕐', label: 'Time',     value: EVENT.time },
+                { icon: '🏷️', label: 'Name', value: EVENT.name},
+                { icon: '📅', label: 'Date', value: EVENT.date },
+                { icon: '🕐', label: 'Time', value: EVENT.time },
                 { icon: '📍', label: 'Location', value: EVENT.location },
-                { icon: '🍽️', label: 'Lunch',    value: 'Provided' },
+                { icon: '👥', label: 'Capacity', value: EVENT.capacity},
+                { icon: '🍽️', label: 'Lunch', value: 'Provided' },
               ].map((d) => (
                 <div key={d.label} style={{
                   display: 'flex', gap: '1rem', alignItems: 'flex-start',
